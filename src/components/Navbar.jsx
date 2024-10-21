@@ -38,8 +38,11 @@ export default function Navbar() {
     <nav style={{
       backgroundColor: '#4B0082',
       color: 'white',
-      position: 'relative',
-      zIndex: 1000
+      position: 'fixed',  // Changed to fixed
+      top: 0,             // Stick to top of the page
+      width: '100%',      // Full width of the page
+      zIndex: 1000,
+      padding: 20
     }}>
       <div style={{
         maxWidth: '1200px',
@@ -115,7 +118,7 @@ export default function Navbar() {
                 cursor: 'pointer'
               }}
             >
-              {isOpen ? <X size={24} /> : <Menu size={24} />}
+              {isOpen ? <X size={30} /> : <Menu size={30} />}
             </button>
           )}
         </div>
