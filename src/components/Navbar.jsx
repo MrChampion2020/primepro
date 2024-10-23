@@ -42,7 +42,7 @@ export default function Navbar() {
       top: 0,             // Stick to top of the page
       width: '100%',      // Full width of the page
       zIndex: 1000,
-      padding: 20
+      padding: 18
     }}>
       <div style={{
         maxWidth: '1200px',

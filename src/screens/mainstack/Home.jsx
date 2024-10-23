@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom'
 import Navbar from '../../components/Navbar'
 import Footer from '../../components/Footer'
 import chevron from '../../assets/chevron.png'
-import shell from '../../assets/shell.png'
+import shell from '../../assets/Shell.jpg'
 import mobil from '../../assets/mobil.png'
-import nnpc from '../../assets/nnpc1.png'
-import heritage from '../../assets/heritage.png'
+import nnpc from '../../assets/nnpc.jpg'
+import heritage from '../../assets/heritage.jpeg'
 import backgroundImage from '../../assets/bg.png'
 import project1 from '../../assets/service1.jpg'
 import project2 from '../../assets/service2.jpeg'
@@ -43,7 +43,8 @@ export default function HomeScreen() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', width: '100%', overflow: 'hidden' }}>
       <Navbar />
-      <main style={{ flexGrow: 1 }}>
+      <main style={{ flexGrow: 1, marginTop: '100px'}}
+      >
         {/* Hero Section */}
         <section style={{
           position: 'relative',
@@ -58,23 +59,28 @@ export default function HomeScreen() {
           <div style={{
             position: 'absolute',
             inset: 0,
-            backgroundColor: 'rgba(0, 0, 0, 0.5)'
-          }}></div>
+            backgroundColor: 'rgba(0, 0, 0, 0.5)',
+            
+          }}>
+
+          </div>
+
           <div style={{
             maxWidth: '90%',
             width: '100%',
             margin: '0 auto',
-            padding: '5%',
+            padding: '2%',
             borderTopRightRadius: '70px',
             borderTopLeftRadius: '70px',
             zIndex: 10,
             color: 'white',
-            backgroundColor: 'rgba(75,0,130, 0.3)'
+            backgroundColor: 'rgba(75,0,130, 0.3)',
           }}>
             <h1 style={{
-              fontSize: 'clamp(24px, 5vw, 48px)',
+              fontSize: 'clamp(16px, 5vw, 24px)',
               fontWeight: 'bold',
-              marginBottom: '16px'
+              marginBottom: '16px',
+              textAlign: 'center'
             }}>Procurement Excellence</h1>
             <p style={{
               fontSize: 'clamp(14px, 3vw, 24px)',
