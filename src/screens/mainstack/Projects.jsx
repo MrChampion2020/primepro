@@ -1,136 +1,129 @@
-import React, { useState } from 'react';
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
-import service1 from '../../assets/service1.jpg';
-import service2 from '../../assets/service2.jpeg';
-import service3 from '../../assets/service3.jpg';
-import service4 from '../../assets/service4.jpeg';
-import service5 from '../../assets/service5.jpeg';
-import service6 from '../../assets/service6.jpeg';
-import { useNavigate, useParams } from "react-router-dom";
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import blog from "../../assets/blog.jpg";
+import ecomm from "../../assets/ecomm.png";
+import dating from "../../assets/dating.png";
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      delayChildren: 0.3,
+      staggerChildren: 0.2,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+  },
+};
+
+const projects = [
+  {
+    title: "E-commerce Platform",
+    description:
+      "Developed a full-stack e-commerce platform with React, Node.js, and MongoDB.",
+    image: ecomm,
+  },
+  {
+    title: "Mobile Fitness App",
+    description:
+      "Created a cross-platform fitness tracking app using React Native and Firebase.",
+    image: dating,
+  },
+  {
+    title: "Portfolio Website",
+    description:
+      "Designed and developed a responsive portfolio website using Next.js and Tailwind CSS.",
+    image: blog,
+  },
+];
 
 export default function Projects() {
   const [selectedProject, setSelectedProject] = useState(null);
 
-  const projects = [
-    { 
-      title: 'Oil & Gas Supply Chain Optimization',
-      client: 'Nigerian National Petroleum Corporation',
-      description: 'Implemented a comprehensive supply chain optimization solution for NNPC, resulting in a 20% reduction in procurement costs and improved operational efficiency.',
-      image: service1,  // Replaced with imported image
-    },
-    { 
-      title: 'Manufacturing Equipment Procurement',
-      client: 'Dangote Group',
-      description: 'Managed the procurement of state-of-the-art manufacturing equipment for Dangote Group\'s new production facility, ensuring timely delivery and cost-effectiveness.',
-      image: service2,  // Replaced with imported image
-    },
-    { 
-      title: 'Healthcare Supplies Management',
-      client: 'Lagos State Ministry of Health',
-      description: 'Developed and implemented an efficient healthcare supplies management system for Lagos State, improving inventory accuracy and reducing stockouts by 40%.',
-      image: service3,  // Replaced with imported image
-    },
-    { 
-      title: 'Telecom Infrastructure Procurement',
-      client: 'MTN Nigeria',
-      description: 'Coordinated the procurement of telecom infrastructure for MTN Nigeria\'s network expansion project, resulting in faster deployment and cost savings.',
-      image: service4,  // Replaced with imported image
-    },
-    { 
-      title: 'Sustainable Agriculture Supply Chain',
-      client: 'Nigerian Agricultural Cooperative',
-      description: 'Designed and implemented a sustainable supply chain solution for a large agricultural cooperative, improving farmer incomes and reducing food waste.',
-      image: service5,  // Replaced with imported image
-    },
-    { 
-      title: 'E-commerce Fulfillment Center Setup',
-      client: 'Jumia',
-      description: 'Managed the procurement and setup of equipment and systems for Jumia\'s new fulfillment center, optimizing order processing and delivery times.',
-      image: service6,  // Replaced with imported image
-    },
-  ];
-
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+    <div
+      className="bg-white dark:bg-black py-20"
+      style={{
+        marginTop: 20,
+      }}
+    >
       <Navbar />
-      <div style={{ fontFamily: 'Arial, sans-serif', color: '#333', maxWidth: '1200px', margin: '0 auto', padding: '40px 20px' }}>
-        <h1 style={{ fontSize: '36px', fontWeight: 'bold', textAlign: 'center', marginBottom: '40px', color: '#4B0082' }}>Our Projects</h1>
-
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '30px' }}>
+      <motion.div
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+      >
+        <motion.h2
+          variants={itemVariants}
+          className="text-3xl font-extrabold text-gray-900 dark:text-white sm:text-4xl text-center mb-12"
+        style={{
+          fontSize: '20px',
+          color: 'black'
+        }}
+        >
+          Featured Projects
+        </motion.h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
-            <div key={index} style={{
-              backgroundColor: 'white',
-              borderRadius: '8px',
-              boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
-              overflow: 'hidden',
-              cursor: 'pointer',
-              transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-            }} onClick={() => setSelectedProject(project)}>
-              <img src={project.image} alt={project.title} style={{ width: '100%', height: '200px', objectFit: 'cover' }} />
-              <div style={{ padding: '20px' }}>
-                <h3 style={{ fontSize: '20px', fontWeight: 'bold', marginBottom: '10px', color: '#4B0082' }}>{project.title}</h3>
-                <p style={{ fontSize: '16px', color: '#666' }}>{project.client}</p>
+            <motion.div
+              key={index}
+              variants={itemVariants}
+              className="bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg cursor-pointer transition-transform duration-300 hover:scale-105"
+              onClick={() => setSelectedProject(project)}
+            >
+              <img
+                src={project.image}
+                alt={project.title}
+                className="w-full h-48 object-cover"
+              />
+              <div className="p-6">
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
+                  {project.title}
+                </h3>
+                <p className="text-gray-600 dark:text-gray-400">
+                  {project.description}
+                </p>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
+      </motion.div>
 
-        {selectedProject && (
-          <div style={{
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            width: '100%',
-            height: '100%',
-            backgroundColor: 'rgba(0, 0, 0, 0.8)',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            zIndex: 1000,
-          }}>
-            <div style={{
-              backgroundColor: 'white',
-              borderRadius: '8px',
-              padding: '40px',
-              maxWidth: '800px',
-              width: '90%',
-              maxHeight: '90%',
-              overflow: 'auto',
-            }}>
-              <button onClick={() => setSelectedProject(null)} style={{
-                position: 'absolute',
-                top: '10px',
-                right: '10px',
-                background: 'none',
-                border: 'none',
-                fontSize: '24px',
-                cursor: 'pointer',
-              }}>&times;</button>
-              <h2 style={{ fontSize: '28px', fontWeight: 'bold', marginBottom: '20px', color: '#4B0082' }}>{selectedProject.title}</h2>
-              <p style={{ fontSize: '18px', fontWeight: 'bold', marginBottom: '10px' }}>Client: {selectedProject.client}</p>
-              <img src={selectedProject.image} alt={selectedProject.title} style={{ width: '100%', height: 'auto', marginBottom: '20px', borderRadius: '8px' }} />
-              <p style={{ fontSize: '16px', lineHeight: '1.6' }}>{selectedProject.description}</p>
-            </div>
+      {/* Project Modal */}
+      {selectedProject && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+          <div className="bg-white dark:bg-gray-800 rounded-lg p-8 max-w-2xl w-full">
+            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+              {selectedProject.title}
+            </h3>
+            <img
+              src={selectedProject.image}
+              alt={selectedProject.title}
+              className="w-full h-64 object-cover rounded-lg mb-4"
+            />
+            <p className="text-gray-600 dark:text-gray-400 mb-4">
+              {selectedProject.description}
+            </p>
+            <button
+              onClick={() => setSelectedProject(null)}
+              className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600"
+            >
+              Close
+            </button>
           </div>
-        )}
-
-        <section style={{ marginTop: '80px', textAlign: 'center' }}>
-          <h2 style={{ fontSize: '28px', fontWeight: 'bold', marginBottom: '20px', color: '#4B0082' }}>Ready to Start Your Project?</h2>
-          <p style={{ fontSize: '18px', marginBottom: '30px' }}>Let's discuss how we can help optimize your procurement and supply chain processes.</p>
-          <a href="/contact" style={{ 
-            display: 'inline-block',
-            backgroundColor: '#4B0082', 
-            color: 'white', 
-            padding: '15px 30px', 
-            borderRadius: '5px', 
-            textDecoration: 'none', 
-            fontSize: '18px',
-            fontWeight: 'bold',
-            transition: 'background-color 0.3s ease',
-          }}>Contact Us</a>
-        </section>
-      </div>
+        </div>
+      )}
       <Footer />
     </div>
   );

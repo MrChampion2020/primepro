@@ -1,63 +1,155 @@
-import React from 'react'
-import { Users, Target, Award, TrendingUp } from 'lucide-react'
+import React from "react";
+import { motion } from "framer-motion";
+import { Users, Target, Award, TrendingUp } from "lucide-react";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
+import bgs from "../../assets/bgmid.png";
+import me from "../../assets/me.png";
+
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      delayChildren: 0.3,
+      staggerChildren: 0.2,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+  },
+};
+
+const stats = [
+  { icon: <Users size={24} />, title: "Clients Served", value: "30+" },
+  { icon: <Target size={24} />, title: "Projects Completed", value: "50+" },
+  { icon: <Award size={24} />, title: "Years of Experience", value: "5+" },
+  { icon: <TrendingUp size={24} />, title: "Annual Growth", value: "25%" },
+];
 
 export default function About() {
-  const stats = [
-    { icon: <Users size={24} />, title: 'Clients Served', value: '500+' },
-    { icon: <Target size={24} />, title: 'Projects Completed', value: '1000+' },
-    { icon: <Award size={24} />, title: 'Years of Experience', value: '20+' },
-    { icon: <TrendingUp size={24} />, title: 'Annual Growth', value: '25%' },
-  ]
-
-  
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', marginTop: '100px' }}>
+    <div className="bg-gray-100 dark:bg-gray-900 py-20"
+    style={{
+      position: "relative",
+          backgroundImage: `url(${bgs})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          width: "100vw",
+    }}>
       <Navbar />
-    <div style={{ fontFamily: 'Arial, sans-serif', color: '#333', maxWidth: '1200px', margin: '0 auto', padding: '24px 20px' }}>
-      <h1 style={{ fontSize: '36px', fontWeight: 'bold', textAlign: 'center', marginBottom: '16px', color: '#4B0082' }}>About Our Company</h1>
-
-      <section style={{ marginBottom: '60px' }}>
-        <h2 style={{ fontSize: '28px', fontWeight: 'bold', marginBottom: '20px', color: '#4B0082' }}>Our Story</h2>
-        <p style={{ fontSize: '16px', lineHeight: '1.6', marginBottom: '20px' }}>
-          Founded in 2003, our company has grown from a small local operation to a leading procurement and supply chain solutions provider in Nigeria. With a commitment to excellence and innovation, we've consistently delivered value to our clients across various industries.
-        </p>
-        <p style={{ fontSize: '16px', lineHeight: '1.6' }}>
-          Our journey has been marked by continuous improvement, strategic partnerships, and a deep understanding of the Nigerian market. Today, we pride ourselves on our ability to offer tailored solutions that meet the unique needs of each client.
-        </p>
-      </section>
-
-      <section style={{ marginBottom: '60px', backgroundColor: '#f8f8f8', padding: '40px', borderRadius: '8px' }}>
-        <h2 style={{ fontSize: '28px', fontWeight: 'bold', marginBottom: '30px', color: '#4B0082', textAlign: 'center' }}>Company Stats</h2>
-        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around', gap: '20px' }}>
-          {stats.map((stat, index) => (
-            <div key={index} style={{ textAlign: 'center', flex: '1 1 200px' }}>
-              <div style={{ color: '#4B0082', marginBottom: '10px' }}>{stat.icon}</div>
-              <h3 style={{ fontSize: '18px', fontWeight: 'bold', marginBottom: '5px' }}>{stat.title}</h3>
-              <p style={{ fontSize: '24px', fontWeight: 'bold', color: '#4B0082' }}>{stat.value}</p>
+      <motion.div
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        style={{
+          backgroundColor: 'black',
+          width: '100vw',
+          marginTop: 50
+        }}
+      >
+        <motion.h2
+          variants={itemVariants}
+          className="text-3xl font-extrabold text-gray-900 dark:text-white sm:text-4xl text-center mb-12"
+        style={{
+          fontSize: '20px',
+          color: 'grey'
+        }}
+        >
+          About Me
+        </motion.h2>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
+        style={{
+          backgroundImage: `url(${bgs})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}>
+          <motion.div variants={itemVariants}
+          style={{
+            borderRadius: '10%',
+            backgroundColor: 'darkblue'
+          }}
+          >
+            <img
+              src={me}
+              alt="About Your Name"
+              className="rounded-lg shadow-lg"
+              width={600}
+              height={400}
+            />
+          </motion.div>
+          <motion.div variants={itemVariants} className="space-y-6">
+            <p className="text-lg text-gray-700 dark:text-gray-300"
+            style={{
+              color: 'grey'
+            }}>
+              With over 5 years of experience in web and mobile app development,
+              I specialize in creating intuitive and efficient digital
+              solutions. My passion lies in leveraging cutting-edge technologies
+              to solve complex problems and deliver exceptional user
+              experiences.
+            </p>
+            <p className="text-lg text-gray-700 dark:text-gray-300"
+            style={{
+              color: 'grey'
+            }}>
+              I'm proficient in a wide range of technologies including React,
+              Next.js, Node.js, and various mobile development frameworks. My
+              approach combines technical expertise with creative
+              problem-solving to build scalable and innovative applications.
+            </p>
+            <div className="flex flex-wrap gap-4">
+              <span className="px-4 py-2 bg-white dark:bg-gray-800 rounded-full text-sm font-medium text-gray-800 dark:text-gray-200">
+                React
+              </span>
+              <span className="px-4 py-2 bg-white dark:bg-gray-800 rounded-full text-sm font-medium text-gray-800 dark:text-gray-200">
+                Next.js
+              </span>
+              <span className="px-4 py-2 bg-white dark:bg-gray-800 rounded-full text-sm font-medium text-gray-800 dark:text-gray-200">
+                Node.js
+              </span>
+              <span className="px-4 py-2 bg-white dark:bg-gray-800 rounded-full text-sm font-medium text-gray-800 dark:text-gray-200">
+                Mobile Development
+              </span>
             </div>
-          ))}
+          </motion.div>
         </div>
-      </section>
-
-      <section style={{ marginBottom: '60px' }}>
-        <h2 style={{ fontSize: '28px', fontWeight: 'bold', marginBottom: '20px', color: '#4B0082' }}>Our Mission</h2>
-        <p style={{ fontSize: '16px', lineHeight: '1.6' }}>
-          Our mission is to empower businesses in Nigeria with world-class procurement and supply chain solutions. We strive to optimize operations, reduce costs, and drive growth for our clients through innovative strategies and cutting-edge technologies.
-        </p>
-      </section>
-
-      <section style={{ marginBottom: '60px' }}>
-        <h2 style={{ fontSize: '28px', fontWeight: 'bold', marginBottom: '20px', color: '#4B0082' }}>Our Vision</h2>
-        <p style={{ fontSize: '16px', lineHeight: '1.6' }}>
-          We aspire to be the leading procurement and supply chain solutions provider in Africa, known for our expertise, integrity, and commitment to sustainable business practices. Our goal is to contribute to the economic growth of Nigeria and beyond by fostering efficient and resilient supply chains.
-        </p>
-      </section>
-
-      
+        <motion.div variants={itemVariants} className="mt-16">
+          <h3 className="text-2xl font-bold text-gray-900 dark:text-white text-center mb-8"
+          style={{
+            color: 'grey'
+          }}>
+            My Stats
+          </h3>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {stats.map((stat, index) => (
+              <div key={index} className="text-center">
+                <div className="text-blue-600 dark:text-blue-400 mb-2">
+                  {stat.icon}
+                </div>
+                <p className="text-xl font-bold text-gray-900 dark:text-white"
+                style={{
+                  color: 'grey'
+                }}>
+                  {stat.value}
+                </p>
+                <p className="text-sm text-gray-600 dark:text-gray-400">
+                  {stat.title}
+                </p>
+              </div>
+            ))}
+          </div>
+        </motion.div>
+      </motion.div>
+      <Footer />
     </div>
-    <Footer />
-    </div>
-  )
+  );
 }

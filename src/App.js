@@ -9,7 +9,9 @@ function App() {
     <>
       <AuthProvider>
         <>
+        
           <Navigation />
+
           <Modal />
         </>
       </AuthProvider>
