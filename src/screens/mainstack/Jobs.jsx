@@ -441,52 +441,68 @@ export default function JobsScreen() {
                           <strong>Salary:</strong> {formatSalary(job.salary)}
                         </span>
                       </div>
-                      {job.applyLink ? (
-                        <a
-                          href={job.applyLink}
-                          target="_blank"
-                          rel="noopener noreferrer"
+                      <div style={{
+                        display: 'flex',
+                        gap: '12px',
+                        marginTop: '15px',
+                        flexWrap: 'wrap'
+                      }}>
+                        <Link to={`/jobs/${job._id}`}>
+                          <motion.button
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            style={{
+                              background: 'linear-gradient(90deg, #667eea 0%, #4B0082 100%)',
+                              color: 'white',
+                              border: 'none',
+                              padding: '10px 20px',
+                              borderRadius: '20px',
+                              fontWeight: '600',
+                              fontSize: '14px',
+                              cursor: 'pointer',
+                              transition: 'all 0.3s ease'
+                            }}
+                          >
+                            View Details
+                          </motion.button>
+                        </Link>
+                        
+                        <motion.button
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                          onClick={() => {
+                            const shareUrl = `${window.location.origin}/jobs/${job._id}`;
+                            navigator.share ? navigator.share({
+                              title: job.title,
+                              text: `Check out this job opportunity: ${job.title} at ${job.company}`,
+                              url: shareUrl
+                            }) : navigator.clipboard.writeText(shareUrl).then(() => alert('Link copied to clipboard!'));
+                          }}
                           style={{
-                            display: 'inline-block',
-                            marginTop: 10,
-                            background: 'linear-gradient(90deg, #667eea 0%, #FFA500 100%)',
+                            background: 'linear-gradient(90deg, #FFA500 0%, #FF6B35 100%)',
                             color: 'white',
-                            padding: '10px 28px',
-                            borderRadius: '25px',
-                            fontWeight: 600,
-                            fontSize: 16,
-                            textDecoration: 'none',
-                            boxShadow: '0 2px 8px #667eea33',
-                            transition: 'background 0.3s, color 0.3s',
+                            border: 'none',
+                            padding: '10px 20px',
+                            borderRadius: '20px',
+                            fontWeight: '600',
+                            fontSize: '14px',
+                            cursor: 'pointer',
+                            transition: 'all 0.3s ease'
                           }}
                         >
-                          Apply Now
-                        </a>
-                      ) : (
-                        <a
-                          href={`mailto:info@primeprocurementus.com?subject=Application for ${encodeURIComponent(job.title)}`}
-                          style={{
-                            display: 'inline-block',
-                            marginTop: 10,
-                            background: 'linear-gradient(90deg, #667eea 0%, #FFA500 100%)',
-                            color: 'white',
-                            padding: '10px 28px',
-                            borderRadius: '25px',
-                            fontWeight: 600,
-                            fontSize: 16,
-                            textDecoration: 'none',
-                            boxShadow: '0 2px 8px #667eea33',
-                            transition: 'background 0.3s, color 0.3s',
-                          }}
-                        >
-                          Apply Now
-                        </a>
-                      )}
+                          Share
+                        </motion.button>
+                      </div>
 
                       <p style={{
                         color: '#555',
                         lineHeight: '1.6',
-                        marginBottom: '20px'
+                        marginBottom: '20px',
+                        display: '-webkit-box',
+                        WebkitLineClamp: 3,
+                        WebkitBoxOrient: 'vertical',
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis'
                       }}>
                         {job.description}
                       </p>
@@ -572,6 +588,32 @@ export default function JobsScreen() {
                           Apply Now
                         </motion.a>
                       )}
+                      
+                      <motion.button
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        onClick={() => {
+                          const shareUrl = `${window.location.origin}/jobs/${job._id}`;
+                          navigator.share ? navigator.share({
+                            title: job.title,
+                            text: `Check out this job opportunity: ${job.title} at ${job.company}`,
+                            url: shareUrl
+                          }) : navigator.clipboard.writeText(shareUrl).then(() => alert('Link copied to clipboard!'));
+                        }}
+                        style={{
+                          background: 'linear-gradient(90deg, #FFA500 0%, #FF6B35 100%)',
+                          color: 'white',
+                          border: 'none',
+                          padding: '8px 16px',
+                          borderRadius: '20px',
+                          cursor: 'pointer',
+                          fontWeight: '600',
+                          fontSize: '12px',
+                          transition: 'all 0.3s ease'
+                        }}
+                      >
+                        Share
+                      </motion.button>
                     </div>
                   </div>
                 </motion.article>

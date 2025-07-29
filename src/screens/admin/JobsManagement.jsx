@@ -94,16 +94,17 @@ const JobsManagement = () => {
     try {
       const jobData = {
         ...formData,
-        requirements: formData.requirements.split(',').map(req => req.trim()).filter(req => req),
-        benefits: formData.benefits.split(',').map(benefit => benefit.trim()).filter(benefit => benefit),
+        requirements: formData.requirements ? formData.requirements.split(',').map(req => req.trim()).filter(req => req) : [],
+        benefits: formData.benefits ? formData.benefits.split(',').map(benefit => benefit.trim()).filter(benefit => benefit) : [],
         salary: {
-          min: parseInt(formData.salaryMin),
-          max: parseInt(formData.salaryMax),
-          currency: formData.currency
+          min: formData.salaryMin ? parseInt(formData.salaryMin) : null,
+          max: formData.salaryMax ? parseInt(formData.salaryMax) : null,
+          currency: formData.currency || 'USD'
         },
-        applicationDeadline: new Date(formData.applicationDeadline)
+        applicationDeadline: formData.applicationDeadline ? new Date(formData.applicationDeadline) : null
       };
 
+      console.log('Sending job update data:', jobData);
       await axios.put(`${API_URL}/api/jobs/${selectedJob._id}`, jobData);
 
       setShowEditModal(false);
@@ -116,6 +117,8 @@ const JobsManagement = () => {
       fetchJobs();
     } catch (error) {
       console.error('Error updating job:', error);
+      console.error('Error response:', error.response?.data);
+      alert(`Failed to update job: ${error.response?.data?.message || error.message}`);
     }
   };
 

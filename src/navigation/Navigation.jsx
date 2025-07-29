@@ -9,7 +9,9 @@ import {
   Projects, 
   Contact,
   Blog,
+  BlogDetail,
   Jobs,
+  JobDetail,
   PrivacyPolicy,
   TermsOfService,
   Disclaimer,
@@ -48,7 +50,9 @@ const Navigation = () => {
         <Route path="services" element={<Services />} />  {/* Services Route */}
         <Route path="products" element={<Products />} />  {/* Products Route */}
         <Route path="blog" element={<Blog />} />  {/* Blog Route */}
+        <Route path="blog/:slug" element={<BlogDetail />} />  {/* Blog Detail Route */}
         <Route path="jobs" element={<Jobs />} />  {/* Jobs Route */}
+        <Route path="jobs/:id" element={<JobDetail />} />  {/* Job Detail Route */}
         {/* Legal and Policy Routes */}
         <Route path="privacy-policy" element={<PrivacyPolicy />} />
         <Route path="terms-of-service" element={<TermsOfService />} />
