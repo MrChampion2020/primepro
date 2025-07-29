@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
+<<<<<<< HEAD
 import Navbar, { NAVBAR_HEIGHT } from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import API_URL from "./config";
@@ -8,6 +9,12 @@ import { motion } from 'framer-motion';
 import background from '../../assets/bg.png';
 import chevron from '../../assets/chevron.png';
 import { Link } from 'react-router-dom'; // Added Link import
+=======
+import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer";
+import API_URL from "./config";
+import axios from 'axios'; // Ensure axios is imported
+>>>>>>> b353fb77c3405f824c6cff804155131a51508516
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -18,15 +25,19 @@ export default function Contact() {
   });
   const [submitStatus, setSubmitStatus] = useState(null);
   const [isProcessing, setIsProcessing] = useState(false); // For showing the processing effect
+<<<<<<< HEAD
   // Add local error state for each field
   const [errors, setErrors] = useState({});
   // Add touched state to track if a field has been visited
   const [touched, setTouched] = useState({});
+=======
+>>>>>>> b353fb77c3405f824c6cff804155131a51508516
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+<<<<<<< HEAD
   // On blur, mark field as touched
   const handleBlur = (e) => {
     setTouched({ ...touched, [e.target.name]: true });
@@ -90,10 +101,35 @@ export default function Contact() {
       setSubmitStatus('error');
     } finally {
       setIsProcessing(false);
+=======
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsProcessing(true); // Start processing
+  
+    try {
+      const response = await axios.post(`${API_URL}/api/contact`, formData, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+  
+      if (response.status === 200) {
+        setSubmitStatus("success");
+        setFormData({ name: "", email: "", subject: "", message: "" });
+      } else {
+        setSubmitStatus("error");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      setSubmitStatus("error");
+    } finally {
+      setIsProcessing(false); // Stop processing after the response
+>>>>>>> b353fb77c3405f824c6cff804155131a51508516
     }
   };
   
   return (
+<<<<<<< HEAD
     <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
       <Navbar />
       {/* Hero Section - visually impactful, no scroll indicator */}
@@ -235,12 +271,85 @@ export default function Contact() {
               {/* Name Field */}
               <motion.div whileFocus={{ scale: 1.03 }}>
                 <label htmlFor="name" style={{ fontWeight: 600, color: '#667eea', marginBottom: 4 }}>Name</label>
+=======
+    <div style={{ width: "100%" }}>
+      <Navbar />
+      <div
+        style={{
+          fontFamily: "Arial, sans-serif",
+          maxWidth: "1200px",
+          margin: "0 auto",
+          padding: "40px 20px",
+        }}
+      >
+        <h1
+          style={{
+            fontSize: "36px",
+            fontWeight: "bold",
+            textAlign: "center",
+            marginBottom: "40px",
+            color: "#4B0082",
+          }}
+        >
+          Contact Us
+        </h1>
+
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "40px",
+            "@media (min-width: 768px)": {
+              flexDirection: "row",
+            },
+          }}
+        >
+          <div
+            style={{
+              flex: "1",
+              "@media (min-width: 768px)": {
+                marginRight: "40px",
+              },
+            }}
+          >
+            <h2
+              style={{
+                fontSize: "24px",
+                fontWeight: "bold",
+                marginBottom: "20px",
+                color: "#4B0082",
+              }}
+            >
+              Get in Touch
+            </h2>
+
+            <form
+              onSubmit={handleSubmit}
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "20px",
+              }}
+            >
+              <div>
+                <label
+                  htmlFor="name"
+                  style={{
+                    display: "block",
+                    marginBottom: "5px",
+                    fontWeight: "bold",
+                  }}
+                >
+                  Name:
+                </label>
+>>>>>>> b353fb77c3405f824c6cff804155131a51508516
                 <input
                   type="text"
                   id="name"
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
+<<<<<<< HEAD
                   onBlur={handleBlur}
                   style={{
                     width: '100%',
@@ -259,12 +368,37 @@ export default function Contact() {
               {/* Email Field */}
               <motion.div whileFocus={{ scale: 1.03 }}>
                 <label htmlFor="email" style={{ fontWeight: 600, color: '#667eea', marginBottom: 4 }}>Email</label>
+=======
+                  required
+                  style={{
+                    width: "100%",
+                    padding: "10px",
+                    fontSize: "16px",
+                    border: "1px solid #ccc",
+                    borderRadius: "4px",
+                  }}
+                />
+              </div>
+
+              <div>
+                <label
+                  htmlFor="email"
+                  style={{
+                    display: "block",
+                    marginBottom: "5px",
+                    fontWeight: "bold",
+                  }}
+                >
+                  Email:
+                </label>
+>>>>>>> b353fb77c3405f824c6cff804155131a51508516
                 <input
                   type="email"
                   id="email"
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
+<<<<<<< HEAD
                   onBlur={handleBlur}
                   style={{
                     width: '100%',
@@ -283,12 +417,37 @@ export default function Contact() {
               {/* Subject Field */}
               <motion.div whileFocus={{ scale: 1.03 }}>
                 <label htmlFor="subject" style={{ fontWeight: 600, color: '#667eea', marginBottom: 4 }}>Subject</label>
+=======
+                  required
+                  style={{
+                    width: "100%",
+                    padding: "10px",
+                    fontSize: "16px",
+                    border: "1px solid #ccc",
+                    borderRadius: "4px",
+                  }}
+                />
+              </div>
+
+              <div>
+                <label
+                  htmlFor="subject"
+                  style={{
+                    display: "block",
+                    marginBottom: "5px",
+                    fontWeight: "bold",
+                  }}
+                >
+                  Subject:
+                </label>
+>>>>>>> b353fb77c3405f824c6cff804155131a51508516
                 <input
                   type="text"
                   id="subject"
                   name="subject"
                   value={formData.subject}
                   onChange={handleChange}
+<<<<<<< HEAD
                   onBlur={handleBlur}
                   style={{
                     width: '100%',
@@ -307,11 +466,36 @@ export default function Contact() {
               {/* Message Field */}
               <motion.div whileFocus={{ scale: 1.03 }}>
                 <label htmlFor="message" style={{ fontWeight: 600, color: '#667eea', marginBottom: 4 }}>Message</label>
+=======
+                  required
+                  style={{
+                    width: "100%",
+                    padding: "10px",
+                    fontSize: "16px",
+                    border: "1px solid #ccc",
+                    borderRadius: "4px",
+                  }}
+                />
+              </div>
+
+              <div>
+                <label
+                  htmlFor="message"
+                  style={{
+                    display: "block",
+                    marginBottom: "5px",
+                    fontWeight: "bold",
+                  }}
+                >
+                  Message:
+                </label>
+>>>>>>> b353fb77c3405f824c6cff804155131a51508516
                 <textarea
                   id="message"
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
+<<<<<<< HEAD
                   onBlur={handleBlur}
                   style={{
                     width: '100%',
@@ -445,6 +629,179 @@ export default function Contact() {
         </div>
        
       </main>
+=======
+                  required
+                  style={{
+                    width: "100%",
+                    padding: "10px",
+                    fontSize: "16px",
+                    border: "1px solid #ccc",
+                    borderRadius: "4px",
+                    minHeight: "150px",
+                    resize: "vertical",
+                  }}
+                ></textarea>
+              </div>
+
+              <button
+                type="submit"
+                style={{
+                  backgroundColor: isProcessing ? "#8a2be2" : "#4B0082", // Change color if processing
+                  color: "white",
+                  padding: "12px 24px",
+                  fontSize: "16px",
+                  fontWeight: "bold",
+                  border: "none",
+                  borderRadius: "4px",
+                  cursor: isProcessing ? "not-allowed" : "pointer", // Disable button if processing
+                  transition: "background-color 0.3s ease",
+                  ":hover": {
+                    backgroundColor: isProcessing ? "#8a2be2" : "#3A006F",
+                  },
+                }}
+                disabled={isProcessing} // Disable button while processing
+              >
+                {isProcessing ? "Sending..." : "Send Message"} {/* Text updates during processing */}
+              </button>
+            </form>
+
+            {submitStatus === "success" && (
+              <p
+                style={{
+                  color: "green",
+                  marginTop: "20px",
+                  fontWeight: "bold",
+                }}
+              >
+                Message sent successfully!
+              </p>
+            )}
+
+            {submitStatus === "error" && (
+              <p
+                style={{
+                  color: "red",
+                  marginTop: "20px",
+                  fontWeight: "bold",
+                }}
+              >
+                There was an error sending your message. Please try again.
+              </p>
+            )}
+          </div>
+
+          <div style={{ flex: "1" }}>
+            {/* Contact information */}
+            <h2
+              style={{
+                fontSize: "24px",
+                fontWeight: "bold",
+                marginBottom: "20px",
+                color: "#4B0082",
+              }}
+            >
+              Contact Information
+            </h2>
+
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "20px",
+              }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "10px",
+                }}
+              >
+                <MapPin size={24} color="#4B0082" />
+                <div>
+                  <h3
+                    style={{
+                      fontSize: "18px",
+                      fontWeight: "bold",
+                      marginBottom: "5px",
+                    }}
+                  >
+                    Address
+                  </h3>
+                  <p> 128 Airport Road, Warri, Nigeria</p>
+                </div>
+              </div>
+
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "10px",
+                }}
+              >
+                <Phone size={24} color="#4B0082" />
+                <div>
+                  <h3
+                    style={{
+                      fontSize: "18px",
+                      fontWeight: "bold",
+                      marginBottom: "5px",
+                    }}
+                  >
+                    Phone
+                  </h3>
+                  <p>+234 prime0000000</p>
+                </div>
+              </div>
+
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "10px",
+                }}
+              >
+                <Mail size={24} color="#4B0082" />
+                <div>
+                  <h3
+                    style={{
+                      fontSize: "18px",
+                      fontWeight: "bold",
+                      marginBottom: "5px",
+                    }}
+                  >
+                    Email
+                  </h3>
+                  <p>info@primeprocurementus.com</p>
+                </div>
+              </div>
+
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "10px",
+                }}
+              >
+                <Clock size={24} color="#4B0082" />
+                <div>
+                  <h3
+                    style={{
+                      fontSize: "18px",
+                      fontWeight: "bold",
+                      marginBottom: "5px",
+                    }}
+                  >
+                    Business Hours
+                  </h3>
+                  <p>Mon-Fri: 9am - 5pm</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+>>>>>>> b353fb77c3405f824c6cff804155131a51508516
       <Footer />
     </div>
   );

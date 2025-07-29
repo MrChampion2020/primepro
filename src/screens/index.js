@@ -5,6 +5,9 @@ export { default as Home } from './mainstack/Home';
 export { default as About } from './mainstack/About';
 export { default as Projects } from './mainstack/Projects';
 export { default as Contact } from './mainstack/Contact';
+<<<<<<< HEAD
 export { default as Blog } from './mainstack/Blog';
 export { default as Jobs } from './mainstack/Jobs';
+=======
+>>>>>>> b353fb77c3405f824c6cff804155131a51508516
  
