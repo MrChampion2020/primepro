@@ -1,25 +1,16 @@
 import React, { useState } from 'react';
-<<<<<<< HEAD
 import Navbar, { NAVBAR_HEIGHT } from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import { motion } from 'framer-motion';
 import background from '../../assets/bg.png';
 import chevron from '../../assets/chevron.png';
-=======
-import Navbar from "../../components/Navbar";
-import Footer from "../../components/Footer";
->>>>>>> b353fb77c3405f824c6cff804155131a51508516
 import service1 from '../../assets/service1.jpg';
 import service2 from '../../assets/service2.jpeg';
 import service3 from '../../assets/service3.jpg';
 import service4 from '../../assets/service4.jpeg';
 import service5 from '../../assets/service5.jpeg';
 import service6 from '../../assets/service6.jpeg';
-<<<<<<< HEAD
 import { Link } from 'react-router-dom';
-=======
-import { useNavigate, useParams } from "react-router-dom";
->>>>>>> b353fb77c3405f824c6cff804155131a51508516
 
 export default function Projects() {
   const [selectedProject, setSelectedProject] = useState(null);
@@ -29,68 +20,43 @@ export default function Projects() {
       title: 'Oil & Gas Supply Chain Optimization',
       client: 'Nigerian National Petroleum Corporation',
       description: 'Implemented a comprehensive supply chain optimization solution for NNPC, resulting in a 20% reduction in procurement costs and improved operational efficiency.',
-<<<<<<< HEAD
       image: service1,
-=======
-      image: service1,  // Replaced with imported image
->>>>>>> b353fb77c3405f824c6cff804155131a51508516
     },
     { 
       title: 'Manufacturing Equipment Procurement',
       client: 'Dangote Group',
       description: 'Managed the procurement of state-of-the-art manufacturing equipment for Dangote Group\'s new production facility, ensuring timely delivery and cost-effectiveness.',
-<<<<<<< HEAD
       image: service2,
-=======
-      image: service2,  // Replaced with imported image
->>>>>>> b353fb77c3405f824c6cff804155131a51508516
     },
     { 
       title: 'Healthcare Supplies Management',
       client: 'Lagos State Ministry of Health',
       description: 'Developed and implemented an efficient healthcare supplies management system for Lagos State, improving inventory accuracy and reducing stockouts by 40%.',
-<<<<<<< HEAD
       image: service3,
-=======
-      image: service3,  // Replaced with imported image
->>>>>>> b353fb77c3405f824c6cff804155131a51508516
     },
     { 
       title: 'Telecom Infrastructure Procurement',
       client: 'MTN Nigeria',
       description: 'Coordinated the procurement of telecom infrastructure for MTN Nigeria\'s network expansion project, resulting in faster deployment and cost savings.',
-<<<<<<< HEAD
       image: service4,
-=======
-      image: service4,  // Replaced with imported image
->>>>>>> b353fb77c3405f824c6cff804155131a51508516
     },
     { 
       title: 'Sustainable Agriculture Supply Chain',
       client: 'Nigerian Agricultural Cooperative',
       description: 'Designed and implemented a sustainable supply chain solution for a large agricultural cooperative, improving farmer incomes and reducing food waste.',
-<<<<<<< HEAD
       image: service5,
-=======
-      image: service5,  // Replaced with imported image
->>>>>>> b353fb77c3405f824c6cff804155131a51508516
     },
     { 
       title: 'E-commerce Fulfillment Center Setup',
       client: 'Jumia',
       description: 'Managed the procurement and setup of equipment and systems for Jumia\'s new fulfillment center, optimizing order processing and delivery times.',
-<<<<<<< HEAD
       image: service6,
-=======
-      image: service6,  // Replaced with imported image
->>>>>>> b353fb77c3405f824c6cff804155131a51508516
     },
   ];
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
       <Navbar />
-<<<<<<< HEAD
       {/* Hero Section - 80vh, consistent with new design */}
       <motion.section 
         initial={{ opacity: 0, y: -50 }}
@@ -224,30 +190,7 @@ export default function Projects() {
             ))}
           </div>
         </motion.section>
-=======
-      <div style={{ fontFamily: 'Arial, sans-serif', color: '#333', maxWidth: '1200px', margin: '0 auto', padding: '40px 20px' }}>
-        <h1 style={{ fontSize: '36px', fontWeight: 'bold', textAlign: 'center', marginBottom: '40px', color: '#4B0082' }}>Our Projects</h1>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '30px' }}>
-          {projects.map((project, index) => (
-            <div key={index} style={{
-              backgroundColor: 'white',
-              borderRadius: '8px',
-              boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
-              overflow: 'hidden',
-              cursor: 'pointer',
-              transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-            }} onClick={() => setSelectedProject(project)}>
-              <img src={project.image} alt={project.title} style={{ width: '100%', height: '200px', objectFit: 'cover' }} />
-              <div style={{ padding: '20px' }}>
-                <h3 style={{ fontSize: '20px', fontWeight: 'bold', marginBottom: '10px', color: '#4B0082' }}>{project.title}</h3>
-                <p style={{ fontSize: '16px', color: '#666' }}>{project.client}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-
->>>>>>> b353fb77c3405f824c6cff804155131a51508516
         {selectedProject && (
           <div style={{
             position: 'fixed',
@@ -269,10 +212,7 @@ export default function Projects() {
               width: '90%',
               maxHeight: '90%',
               overflow: 'auto',
-<<<<<<< HEAD
               position: 'relative'
-=======
->>>>>>> b353fb77c3405f824c6cff804155131a51508516
             }}>
               <button onClick={() => setSelectedProject(null)} style={{
                 position: 'absolute',
@@ -290,27 +230,7 @@ export default function Projects() {
             </div>
           </div>
         )}
-<<<<<<< HEAD
       </main>
-=======
-
-        <section style={{ marginTop: '80px', textAlign: 'center' }}>
-          <h2 style={{ fontSize: '28px', fontWeight: 'bold', marginBottom: '20px', color: '#4B0082' }}>Ready to Start Your Project?</h2>
-          <p style={{ fontSize: '18px', marginBottom: '30px' }}>Let's discuss how we can help optimize your procurement and supply chain processes.</p>
-          <a href="/contact" style={{ 
-            display: 'inline-block',
-            backgroundColor: '#4B0082', 
-            color: 'white', 
-            padding: '15px 30px', 
-            borderRadius: '5px', 
-            textDecoration: 'none', 
-            fontSize: '18px',
-            fontWeight: 'bold',
-            transition: 'background-color 0.3s ease',
-          }}>Contact Us</a>
-        </section>
-      </div>
->>>>>>> b353fb77c3405f824c6cff804155131a51508516
       <Footer />
     </div>
   );

@@ -1,20 +1,13 @@
 import React, { useState } from "react";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
-<<<<<<< HEAD
 import Navbar, { NAVBAR_HEIGHT } from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import API_URL from "./config";
-import axios from 'axios'; // Ensure axios is imported
+import axios from 'axios';
 import { motion } from 'framer-motion';
 import background from '../../assets/bg.png';
 import chevron from '../../assets/chevron.png';
-import { Link } from 'react-router-dom'; // Added Link import
-=======
-import Navbar from "../../components/Navbar";
-import Footer from "../../components/Footer";
-import API_URL from "./config";
-import axios from 'axios'; // Ensure axios is imported
->>>>>>> b353fb77c3405f824c6cff804155131a51508516
+import { Link } from 'react-router-dom';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -24,26 +17,18 @@ export default function Contact() {
     message: "",
   });
   const [submitStatus, setSubmitStatus] = useState(null);
-  const [isProcessing, setIsProcessing] = useState(false); // For showing the processing effect
-<<<<<<< HEAD
-  // Add local error state for each field
+  const [isProcessing, setIsProcessing] = useState(false);
   const [errors, setErrors] = useState({});
-  // Add touched state to track if a field has been visited
   const [touched, setTouched] = useState({});
-=======
->>>>>>> b353fb77c3405f824c6cff804155131a51508516
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-<<<<<<< HEAD
-  // On blur, mark field as touched
   const handleBlur = (e) => {
     setTouched({ ...touched, [e.target.name]: true });
   };
 
-  // Field validation helpers
   const getFieldError = (name) => {
     if (!touched[name]) return '';
     if (name === 'email') {
@@ -54,6 +39,7 @@ export default function Contact() {
     if (!formData[name].trim()) return `${name.charAt(0).toUpperCase() + name.slice(1)} is required.`;
     return '';
   };
+
   const getFieldSuccess = (name) => {
     if (!touched[name]) return '';
     if (name === 'email') {
@@ -64,13 +50,11 @@ export default function Contact() {
     return '';
   };
 
-  // Enhanced validation on submit
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsProcessing(true);
     let newErrors = {};
     let newTouched = { ...touched };
-    // Mark all fields as touched on submit
     ['name', 'email', 'subject', 'message'].forEach(field => {
       newTouched[field] = true;
     });
@@ -93,7 +77,7 @@ export default function Contact() {
         setSubmitStatus('success');
         setFormData({ name: '', email: '', subject: '', message: '' });
         setTouched({});
-        setTimeout(() => setSubmitStatus(null), 5000); // Auto-dismiss success
+        setTimeout(() => setSubmitStatus(null), 5000);
       } else {
         setSubmitStatus('error');
       }
@@ -101,38 +85,12 @@ export default function Contact() {
       setSubmitStatus('error');
     } finally {
       setIsProcessing(false);
-=======
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsProcessing(true); // Start processing
-  
-    try {
-      const response = await axios.post(`${API_URL}/api/contact`, formData, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-  
-      if (response.status === 200) {
-        setSubmitStatus("success");
-        setFormData({ name: "", email: "", subject: "", message: "" });
-      } else {
-        setSubmitStatus("error");
-      }
-    } catch (error) {
-      console.error("Error:", error);
-      setSubmitStatus("error");
-    } finally {
-      setIsProcessing(false); // Stop processing after the response
->>>>>>> b353fb77c3405f824c6cff804155131a51508516
     }
   };
   
   return (
-<<<<<<< HEAD
     <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
       <Navbar />
-      {/* Hero Section - visually impactful, no scroll indicator */}
       <motion.section 
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
@@ -153,7 +111,6 @@ export default function Contact() {
           textAlign: 'center',
         }}
       >
-        {/* Subtle animated background shapes */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 0.15 }}
@@ -167,7 +124,6 @@ export default function Contact() {
             zIndex: 1
           }}
         />
-        {/* Hero Content */}
         <div style={{
           position: 'relative',
           zIndex: 10,
@@ -203,7 +159,6 @@ export default function Contact() {
             Reach out for procurement, partnership, or support. We respond fast!
           </motion.p>
         </div>
-        {/* In the hero section, move the Contact button to the bottom, below all content, centered */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
@@ -244,7 +199,6 @@ export default function Contact() {
             justifyContent: 'center',
           }}
         >
-          {/* Animated Glassmorphic Contact Form */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -266,90 +220,15 @@ export default function Contact() {
             }}
           >
             <h2 style={{ fontSize: 28, fontWeight: 700, color: '#4B0082', marginBottom: 18, textAlign: 'center' }}>Contact Form</h2>
-            {/* Keep all API logic and input validation as is */}
             <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
-              {/* Name Field */}
               <motion.div whileFocus={{ scale: 1.03 }}>
                 <label htmlFor="name" style={{ fontWeight: 600, color: '#667eea', marginBottom: 4 }}>Name</label>
-=======
-    <div style={{ width: "100%" }}>
-      <Navbar />
-      <div
-        style={{
-          fontFamily: "Arial, sans-serif",
-          maxWidth: "1200px",
-          margin: "0 auto",
-          padding: "40px 20px",
-        }}
-      >
-        <h1
-          style={{
-            fontSize: "36px",
-            fontWeight: "bold",
-            textAlign: "center",
-            marginBottom: "40px",
-            color: "#4B0082",
-          }}
-        >
-          Contact Us
-        </h1>
-
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "40px",
-            "@media (min-width: 768px)": {
-              flexDirection: "row",
-            },
-          }}
-        >
-          <div
-            style={{
-              flex: "1",
-              "@media (min-width: 768px)": {
-                marginRight: "40px",
-              },
-            }}
-          >
-            <h2
-              style={{
-                fontSize: "24px",
-                fontWeight: "bold",
-                marginBottom: "20px",
-                color: "#4B0082",
-              }}
-            >
-              Get in Touch
-            </h2>
-
-            <form
-              onSubmit={handleSubmit}
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                gap: "20px",
-              }}
-            >
-              <div>
-                <label
-                  htmlFor="name"
-                  style={{
-                    display: "block",
-                    marginBottom: "5px",
-                    fontWeight: "bold",
-                  }}
-                >
-                  Name:
-                </label>
->>>>>>> b353fb77c3405f824c6cff804155131a51508516
                 <input
                   type="text"
                   id="name"
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
-<<<<<<< HEAD
                   onBlur={handleBlur}
                   style={{
                     width: '100%',
@@ -365,40 +244,14 @@ export default function Contact() {
                 {getFieldError('name') && <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} style={{ color: 'red', fontSize: 14, marginTop: 2 }}>{getFieldError('name')}</motion.div>}
                 {getFieldSuccess('name') && !getFieldError('name') && <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} style={{ color: 'green', fontSize: 14, marginTop: 2 }}>{getFieldSuccess('name')}</motion.div>}
               </motion.div>
-              {/* Email Field */}
               <motion.div whileFocus={{ scale: 1.03 }}>
                 <label htmlFor="email" style={{ fontWeight: 600, color: '#667eea', marginBottom: 4 }}>Email</label>
-=======
-                  required
-                  style={{
-                    width: "100%",
-                    padding: "10px",
-                    fontSize: "16px",
-                    border: "1px solid #ccc",
-                    borderRadius: "4px",
-                  }}
-                />
-              </div>
-
-              <div>
-                <label
-                  htmlFor="email"
-                  style={{
-                    display: "block",
-                    marginBottom: "5px",
-                    fontWeight: "bold",
-                  }}
-                >
-                  Email:
-                </label>
->>>>>>> b353fb77c3405f824c6cff804155131a51508516
                 <input
                   type="email"
                   id="email"
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-<<<<<<< HEAD
                   onBlur={handleBlur}
                   style={{
                     width: '100%',
@@ -414,40 +267,14 @@ export default function Contact() {
                 {getFieldError('email') && <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} style={{ color: 'red', fontSize: 14, marginTop: 2 }}>{getFieldError('email')}</motion.div>}
                 {getFieldSuccess('email') && !getFieldError('email') && <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} style={{ color: 'green', fontSize: 14, marginTop: 2 }}>{getFieldSuccess('email')}</motion.div>}
               </motion.div>
-              {/* Subject Field */}
               <motion.div whileFocus={{ scale: 1.03 }}>
                 <label htmlFor="subject" style={{ fontWeight: 600, color: '#667eea', marginBottom: 4 }}>Subject</label>
-=======
-                  required
-                  style={{
-                    width: "100%",
-                    padding: "10px",
-                    fontSize: "16px",
-                    border: "1px solid #ccc",
-                    borderRadius: "4px",
-                  }}
-                />
-              </div>
-
-              <div>
-                <label
-                  htmlFor="subject"
-                  style={{
-                    display: "block",
-                    marginBottom: "5px",
-                    fontWeight: "bold",
-                  }}
-                >
-                  Subject:
-                </label>
->>>>>>> b353fb77c3405f824c6cff804155131a51508516
                 <input
                   type="text"
                   id="subject"
                   name="subject"
                   value={formData.subject}
                   onChange={handleChange}
-<<<<<<< HEAD
                   onBlur={handleBlur}
                   style={{
                     width: '100%',
@@ -463,39 +290,13 @@ export default function Contact() {
                 {getFieldError('subject') && <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} style={{ color: 'red', fontSize: 14, marginTop: 2 }}>{getFieldError('subject')}</motion.div>}
                 {getFieldSuccess('subject') && !getFieldError('subject') && <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} style={{ color: 'green', fontSize: 14, marginTop: 2 }}>{getFieldSuccess('subject')}</motion.div>}
               </motion.div>
-              {/* Message Field */}
               <motion.div whileFocus={{ scale: 1.03 }}>
                 <label htmlFor="message" style={{ fontWeight: 600, color: '#667eea', marginBottom: 4 }}>Message</label>
-=======
-                  required
-                  style={{
-                    width: "100%",
-                    padding: "10px",
-                    fontSize: "16px",
-                    border: "1px solid #ccc",
-                    borderRadius: "4px",
-                  }}
-                />
-              </div>
-
-              <div>
-                <label
-                  htmlFor="message"
-                  style={{
-                    display: "block",
-                    marginBottom: "5px",
-                    fontWeight: "bold",
-                  }}
-                >
-                  Message:
-                </label>
->>>>>>> b353fb77c3405f824c6cff804155131a51508516
                 <textarea
                   id="message"
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
-<<<<<<< HEAD
                   onBlur={handleBlur}
                   style={{
                     width: '100%',
@@ -511,7 +312,6 @@ export default function Contact() {
                 {getFieldError('message') && <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} style={{ color: 'red', fontSize: 14, marginTop: 2 }}>{getFieldError('message')}</motion.div>}
                 {getFieldSuccess('message') && !getFieldError('message') && <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} style={{ color: 'green', fontSize: 14, marginTop: 2 }}>{getFieldSuccess('message')}</motion.div>}
               </motion.div>
-              {/* Submit Button with animation */}
               <motion.button
                 type="submit"
                 whileHover={{ scale: 1.04 }}
@@ -533,7 +333,6 @@ export default function Contact() {
               >
                 {isProcessing ? 'Sending...' : 'Send Message'}
               </motion.button>
-              {/* Success/Error Feedback */}
               {submitStatus === 'success' && (
                 <motion.div initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.8, opacity: 0 }} style={{ display: 'flex', alignItems: 'center', gap: 10, background: '#e6ffed', color: '#1a7f37', borderRadius: 8, padding: '10px 16px', marginTop: 10, fontWeight: 600, position: 'relative' }}>
                   <svg width="22" height="22" fill="#1a7f37" viewBox="0 0 24 24"><path d="M20.285 6.709a1 1 0 0 0-1.414-1.418l-8.285 8.293-3.293-3.293a1 1 0 0 0-1.414 1.414l4 4a1 1 0 0 0 1.414 0l9-9z"/></svg>
@@ -546,7 +345,6 @@ export default function Contact() {
               )}
             </form>
           </motion.div>
-          {/* Animated Contact Info Card */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -569,15 +367,16 @@ export default function Contact() {
             }}
           >
             <h2 style={{ fontSize: 24, fontWeight: 700, color: '#4B0082', marginBottom: 10 }}>Contact Information</h2>
-            {/* Address */}
             <motion.div whileHover={{ scale: 1.08, rotate: 2 }} whileTap={{ scale: 0.96 }} style={{ display: 'flex', alignItems: 'center', gap: 14, cursor: 'pointer' }} onClick={() => navigator.clipboard.writeText('NO. 73, EMEBIREN STREET OKUMAGBA LAYOUT, WARRI, DELTA STATE')} title="Copy address">
               <motion.div whileHover={{ scale: 1.2, color: '#FFA500' }} style={{ display: 'flex', alignItems: 'center' }}>
-                {/* <MapPin size={24} color="#667eea" /> */}
+                <MapPin size={24} color="#667eea" />
               </motion.div>
-             
+              <div>
+                <div style={{ fontWeight: 600, color: '#333' }}>NO. 73, EMEBIREN STREET OKUMAGBA LAYOUT, WARRI, DELTA STATE</div>
+                <div style={{ fontSize: 14, color: '#888' }}>Our Address</div>
+              </div>
             </motion.div>
-            {/* Phone */}
-            <motion.div whileHover={{ scale: 1.08, rotate: -2 }} whileTap={{ scale: 0.96 }} style={{ display: 'flex', alignItems: 'center', gap: 14, cursor: 'pointer' }} onClick={() => navigator.clipboard.writeText('+2347035918223')} title="Copy phone">
+            <motion.div whileHover={{ scale: 1.08, rotate: -2 }} whileTap={{ scale: 0.96 }} style={{ display: 'flex', alignItems: 'center', gap: 14, cursor: 'pointer' }} onClick={() => navigator.clipboard.writeText('+2348057216362')} title="Copy phone">
               <motion.div whileHover={{ scale: 1.2, color: '#FFA500' }} style={{ display: 'flex', alignItems: 'center' }}>
                 <Phone size={24} color="#FFA500" />
               </motion.div>
@@ -586,7 +385,6 @@ export default function Contact() {
                 <div style={{ fontSize: 14, color: '#888' }}>Call Us</div>
               </div>
             </motion.div>
-            {/* Email */}
             <motion.div whileHover={{ scale: 1.08, rotate: 2 }} whileTap={{ scale: 0.96 }} style={{ display: 'flex', alignItems: 'center', gap: 14, cursor: 'pointer' }} onClick={() => navigator.clipboard.writeText('info@primeprocurementus.com')} title="Copy email">
               <motion.div whileHover={{ scale: 1.2, color: '#667eea' }} style={{ display: 'flex', alignItems: 'center' }}>
                 <Mail size={24} color="#667eea" />
@@ -596,7 +394,6 @@ export default function Contact() {
                 <div style={{ fontSize: 14, color: '#888' }}>Email Us</div>
               </div>
             </motion.div>
-            {/* Business Hours */}
             <motion.div whileHover={{ scale: 1.08, rotate: -2 }} whileTap={{ scale: 0.96 }} style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
               <motion.div whileHover={{ scale: 1.2, color: '#FFA500' }} style={{ display: 'flex', alignItems: 'center' }}>
                 <Clock size={24} color="#667eea" />
@@ -606,202 +403,20 @@ export default function Contact() {
                 <div style={{ fontSize: 14, color: '#888' }}>Business Hours</div>
               </div>
             </motion.div>
-            {/* Social & Quick Actions */}
             <div style={{ display: 'flex', gap: 18, marginTop: 10 }}>
-              {/* WhatsApp */}
               <motion.a whileHover={{ scale: 1.2, rotate: 8 }} href="https://wa.me/+2348057216362" target="_blank" rel="noopener noreferrer" title="WhatsApp" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 38, height: 38, borderRadius: '50%', background: '#25D366', boxShadow: '0 2px 8px #25D36633' }}>
                 <img src={require('../../assets/whatsapp.png')} alt="WhatsApp" style={{ width: 22, height: 22 }} />
               </motion.a>
-              {/* Email */}
               <motion.a whileHover={{ scale: 1.2, rotate: -8 }} href="mailto:info@primeprocurementus.com" title="Email" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 38, height: 38, borderRadius: '50%', background: '#667eea', boxShadow: '0 2px 8px #667eea33' }}>
                 <img src={require('../../assets/email.png')} alt="Email" style={{ width: 22, height: 22 }} />
               </motion.a>
-              {/* LinkedIn (placeholder) */}
-              {/* <motion.a whileHover={{ scale: 1.2, rotate: 8 }} href="#" title="LinkedIn" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 38, height: 38, borderRadius: '50%', background: '#0077b5', boxShadow: '0 2px 8px #0077b533' }}>
-                <svg width="22" height="22" fill="white" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.268c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm15.5 11.268h-3v-5.604c0-1.337-.025-3.063-1.868-3.063-1.868 0-2.154 1.459-2.154 2.968v5.699h-3v-10h2.881v1.367h.041c.401-.761 1.379-1.563 2.841-1.563 3.039 0 3.6 2.001 3.6 4.601v5.595z"/></svg>
-              </motion.a> */}
-              {/* Start Chat (opens chat widget) */}
               <motion.button whileHover={{ scale: 1.2, rotate: -8 }} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} title="Start Chat" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 38, height: 38, borderRadius: '50%', background: 'linear-gradient(135deg, #667eea 0%, #FFA500 100%)', boxShadow: '0 2px 8px #FFA50033', border: 'none', cursor: 'pointer' }}>
                 <img src={require('../../assets/msg.png')} alt="Chat" style={{ width: 22, height: 22 }} />
               </motion.button>
             </div>
           </motion.div>
         </div>
-       
       </main>
-=======
-                  required
-                  style={{
-                    width: "100%",
-                    padding: "10px",
-                    fontSize: "16px",
-                    border: "1px solid #ccc",
-                    borderRadius: "4px",
-                    minHeight: "150px",
-                    resize: "vertical",
-                  }}
-                ></textarea>
-              </div>
-
-              <button
-                type="submit"
-                style={{
-                  backgroundColor: isProcessing ? "#8a2be2" : "#4B0082", // Change color if processing
-                  color: "white",
-                  padding: "12px 24px",
-                  fontSize: "16px",
-                  fontWeight: "bold",
-                  border: "none",
-                  borderRadius: "4px",
-                  cursor: isProcessing ? "not-allowed" : "pointer", // Disable button if processing
-                  transition: "background-color 0.3s ease",
-                  ":hover": {
-                    backgroundColor: isProcessing ? "#8a2be2" : "#3A006F",
-                  },
-                }}
-                disabled={isProcessing} // Disable button while processing
-              >
-                {isProcessing ? "Sending..." : "Send Message"} {/* Text updates during processing */}
-              </button>
-            </form>
-
-            {submitStatus === "success" && (
-              <p
-                style={{
-                  color: "green",
-                  marginTop: "20px",
-                  fontWeight: "bold",
-                }}
-              >
-                Message sent successfully!
-              </p>
-            )}
-
-            {submitStatus === "error" && (
-              <p
-                style={{
-                  color: "red",
-                  marginTop: "20px",
-                  fontWeight: "bold",
-                }}
-              >
-                There was an error sending your message. Please try again.
-              </p>
-            )}
-          </div>
-
-          <div style={{ flex: "1" }}>
-            {/* Contact information */}
-            <h2
-              style={{
-                fontSize: "24px",
-                fontWeight: "bold",
-                marginBottom: "20px",
-                color: "#4B0082",
-              }}
-            >
-              Contact Information
-            </h2>
-
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                gap: "20px",
-              }}
-            >
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "10px",
-                }}
-              >
-                <MapPin size={24} color="#4B0082" />
-                <div>
-                  <h3
-                    style={{
-                      fontSize: "18px",
-                      fontWeight: "bold",
-                      marginBottom: "5px",
-                    }}
-                  >
-                    Address
-                  </h3>
-                  <p> 128 Airport Road, Warri, Nigeria</p>
-                </div>
-              </div>
-
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "10px",
-                }}
-              >
-                <Phone size={24} color="#4B0082" />
-                <div>
-                  <h3
-                    style={{
-                      fontSize: "18px",
-                      fontWeight: "bold",
-                      marginBottom: "5px",
-                    }}
-                  >
-                    Phone
-                  </h3>
-                  <p>+234 prime0000000</p>
-                </div>
-              </div>
-
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "10px",
-                }}
-              >
-                <Mail size={24} color="#4B0082" />
-                <div>
-                  <h3
-                    style={{
-                      fontSize: "18px",
-                      fontWeight: "bold",
-                      marginBottom: "5px",
-                    }}
-                  >
-                    Email
-                  </h3>
-                  <p>info@primeprocurementus.com</p>
-                </div>
-              </div>
-
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "10px",
-                }}
-              >
-                <Clock size={24} color="#4B0082" />
-                <div>
-                  <h3
-                    style={{
-                      fontSize: "18px",
-                      fontWeight: "bold",
-                      marginBottom: "5px",
-                    }}
-                  >
-                    Business Hours
-                  </h3>
-                  <p>Mon-Fri: 9am - 5pm</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
->>>>>>> b353fb77c3405f824c6cff804155131a51508516
       <Footer />
     </div>
   );

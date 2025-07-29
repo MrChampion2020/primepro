@@ -1,11 +1,6 @@
-<<<<<<< HEAD
 import React, { useEffect } from "react";
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import ScrollToTop from "../components/ScrollToTop";
-=======
-import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
->>>>>>> b353fb77c3405f824c6cff804155131a51508516
 import {
   Products,
   Services,
@@ -13,7 +8,6 @@ import {
   About, 
   Projects, 
   Contact,
-<<<<<<< HEAD
   Blog,
   Jobs,
 } from "../screens/index";
@@ -36,18 +30,12 @@ function ScrollRestoration() {
   }, [location.pathname]);
   return null;
 }
-=======
-} from "../screens/index";
->>>>>>> b353fb77c3405f824c6cff804155131a51508516
 
 const Navigation = () => {
   return (
     <BrowserRouter>
-<<<<<<< HEAD
       <ScrollRestoration />
       <ScrollToTop />
-=======
->>>>>>> b353fb77c3405f824c6cff804155131a51508516
       <Routes>
         <Route path="/" element={<Home />} />  {/* Home Route */}
         <Route path="contact" element={<Contact />} />  {/* Contact Route */}
@@ -55,7 +43,6 @@ const Navigation = () => {
         <Route path="about" element={<About />} />  {/* About Route */}
         <Route path="services" element={<Services />} />  {/* Services Route */}
         <Route path="products" element={<Products />} />  {/* Products Route */}
-<<<<<<< HEAD
         <Route path="blog" element={<Blog />} />  {/* Blog Route */}
         <Route path="jobs" element={<Jobs />} />  {/* Jobs Route */}
         {/* Admin Routes */}
@@ -105,8 +92,6 @@ const Navigation = () => {
             <ProductsManagement />
           </AdminLayout>
         } />
-=======
->>>>>>> b353fb77c3405f824c6cff804155131a51508516
       </Routes>
     </BrowserRouter>
   );
