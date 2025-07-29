@@ -41,6 +41,7 @@ export default function JobsScreen() {
           benefits: ['Competitive remote developer salary', 'Health insurance', 'Professional development', 'Flexible work hours'],
           salary: { min: 80000, max: 120000, currency: 'USD' },
           applicationDeadline: new Date('2025-02-15'),
+          applyUrl: 'https://primepro.com/careers/react-developer',
           date: new Date('2025-01-10'),
           tags: ['React JS jobs remote', 'software engineering jobs', 'work from home tech jobs', 'full stack developer remote jobs']
         },
@@ -56,6 +57,7 @@ export default function JobsScreen() {
           benefits: ['High salary package', 'Offshore bonuses', 'Health insurance', 'Professional development'],
           salary: { min: 90000, max: 140000, currency: 'USD' },
           applicationDeadline: new Date('2025-02-20'),
+          applyUrl: 'https://primepro.com/careers/oil-gas-engineer',
           date: new Date('2025-01-08'),
           tags: ['oil and gas jobs in Nigeria 2025', 'offshore rig jobs', 'top paying oil and gas companies']
         },
@@ -71,6 +73,7 @@ export default function JobsScreen() {
           benefits: ['Remote work flexibility', 'Competitive salary', 'Performance bonuses', 'Learning opportunities'],
           salary: { min: 70000, max: 110000, currency: 'USD' },
           applicationDeadline: new Date('2025-02-10'),
+          applyUrl: 'https://primepro.com/careers/nodejs-developer',
           date: new Date('2025-01-05'),
           tags: ['Node JS developer jobs', 'remote IT jobs hiring now', 'work from home tech jobs']
         },
@@ -86,6 +89,7 @@ export default function JobsScreen() {
           benefits: ['Work from home setup', 'Competitive pay', 'Health benefits', 'Career growth'],
           salary: { min: 65000, max: 100000, currency: 'USD' },
           applicationDeadline: new Date('2025-02-25'),
+          applyUrl: 'https://primepro.com/careers/frontend-developer',
           date: new Date('2025-01-12'),
           tags: ['frontend jobs work from home', 'React JS jobs remote', 'remote software engineering jobs']
         },
@@ -101,6 +105,7 @@ export default function JobsScreen() {
           benefits: ['Offshore bonuses', 'Comprehensive insurance', 'Professional training', 'Career advancement'],
           salary: { min: 85000, max: 130000, currency: 'USD' },
           applicationDeadline: new Date('2025-02-28'),
+          applyUrl: 'https://primepro.com/careers/instrumentation-engineer',
           date: new Date('2025-01-15'),
           tags: ['instrumentation engineer jobs offshore', 'oil and gas jobs in Nigeria 2025', 'offshore rig jobs']
         },
@@ -116,6 +121,7 @@ export default function JobsScreen() {
           benefits: ['Remote work flexibility', 'Competitive salary', 'Health insurance', 'Professional development'],
           salary: { min: 75000, max: 115000, currency: 'USD' },
           applicationDeadline: new Date('2025-03-05'),
+          applyUrl: 'https://primepro.com/careers/fullstack-developer',
           date: new Date('2025-01-18'),
           tags: ['full stack developer jobs work from home', 'remote jobs for developers', 'work from home tech jobs']
         }
@@ -523,24 +529,49 @@ export default function JobsScreen() {
                         {getDaysUntilDeadline(job.applicationDeadline)}
                       </span>
                       
-                      <motion.button
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        disabled={getDaysUntilDeadline(job.applicationDeadline) === 'Closed'}
-                        style={{
-                          backgroundColor: getDaysUntilDeadline(job.applicationDeadline) === 'Closed' ? '#ccc' : '#667eea',
-                          color: 'white',
-                          border: 'none',
-                          padding: '12px 24px',
-                          borderRadius: '25px',
-                          cursor: getDaysUntilDeadline(job.applicationDeadline) === 'Closed' ? 'not-allowed' : 'pointer',
-                          fontWeight: '600',
-                          fontSize: '14px',
-                          transition: 'all 0.3s ease'
-                        }}
-                      >
-                        {getDaysUntilDeadline(job.applicationDeadline) === 'Closed' ? 'Closed' : 'Apply Now'}
-                      </motion.button>
+                      {getDaysUntilDeadline(job.applicationDeadline) === 'Closed' ? (
+                        <motion.button
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                          disabled={true}
+                          style={{
+                            backgroundColor: '#ccc',
+                            color: 'white',
+                            border: 'none',
+                            padding: '12px 24px',
+                            borderRadius: '25px',
+                            cursor: 'not-allowed',
+                            fontWeight: '600',
+                            fontSize: '14px',
+                            transition: 'all 0.3s ease'
+                          }}
+                        >
+                          Closed
+                        </motion.button>
+                      ) : (
+                        <motion.a
+                          href={job.applyUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                          style={{
+                            backgroundColor: '#667eea',
+                            color: 'white',
+                            border: 'none',
+                            padding: '12px 24px',
+                            borderRadius: '25px',
+                            cursor: 'pointer',
+                            fontWeight: '600',
+                            fontSize: '14px',
+                            transition: 'all 0.3s ease',
+                            textDecoration: 'none',
+                            display: 'inline-block'
+                          }}
+                        >
+                          Apply Now
+                        </motion.a>
+                      )}
                     </div>
                   </div>
                 </motion.article>

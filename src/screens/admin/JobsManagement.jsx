@@ -40,6 +40,7 @@ const JobsManagement = () => {
     salaryMax: '',
     currency: 'USD',
     applicationDeadline: '',
+    applyUrl: '',
     isActive: true
   });
 
@@ -80,7 +81,7 @@ const JobsManagement = () => {
       setFormData({
         title: '', company: '', location: '', type: 'Full-time', description: '',
         requirements: '', benefits: '', salaryMin: '', salaryMax: '', currency: 'USD',
-        applicationDeadline: '', isActive: true
+        applicationDeadline: '', applyUrl: '', isActive: true
       });
       fetchJobs();
     } catch (error) {
@@ -110,7 +111,7 @@ const JobsManagement = () => {
       setFormData({
         title: '', company: '', location: '', type: 'Full-time', description: '',
         requirements: '', benefits: '', salaryMin: '', salaryMax: '', currency: 'USD',
-        applicationDeadline: '', isActive: true
+        applicationDeadline: '', applyUrl: '', isActive: true
       });
       fetchJobs();
     } catch (error) {
@@ -144,6 +145,7 @@ const JobsManagement = () => {
       salaryMax: job.salary?.max?.toString() || '',
       currency: job.salary?.currency || 'USD',
       applicationDeadline: job.applicationDeadline ? new Date(job.applicationDeadline).toISOString().split('T')[0] : '',
+      applyUrl: job.applyUrl || '',
       isActive: job.isActive
     });
     setShowEditModal(true);
@@ -514,6 +516,23 @@ const JobsManagement = () => {
                   onChange={(e) => setFormData({...formData, applicationDeadline: e.target.value})}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
                 />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Apply URL <span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="url"
+                  placeholder="https://example.com/apply"
+                  value={formData.applyUrl}
+                  onChange={(e) => setFormData({...formData, applyUrl: e.target.value})}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
+                  required
+                />
+                <p className="text-sm text-gray-500 mt-1">
+                  The URL where candidates can apply for this job
+                </p>
               </div>
 
               <div className="flex items-center space-x-3">
