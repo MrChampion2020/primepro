@@ -1,3 +1,65 @@
 # https://www.robotstxt.org/robotstxt.html
+# Robots.txt for Prime Procurement Limited
+# Last Updated: January 1, 2025
+
 User-agent: *
-Disallow:
+Allow: /
+
+# Sitemap
+Sitemap: https://primeprocurementus.com/sitemap.xml
+
+# Allow all important pages
+Allow: /about
+Allow: /services
+Allow: /products
+Allow: /projects
+Allow: /blog
+Allow: /jobs
+Allow: /contact
+Allow: /privacy-policy
+Allow: /terms-of-service
+Allow: /disclaimer
+Allow: /faq
+
+# Disallow admin areas and sensitive content
+Disallow: /admin/
+Disallow: /admin/login
+Disallow: /admin/dashboard
+Disallow: /admin/contacts
+Disallow: /admin/blogs
+Disallow: /admin/jobs
+Disallow: /admin/chat
+Disallow: /admin/settings
+Disallow: /admin/products
+Disallow: /api/
+Disallow: /_next/
+Disallow: /static/
+
+# Specific rules for different bots
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 2
+
+# Block bad bots
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+# Host
+Host: https://primeprocurementus.com

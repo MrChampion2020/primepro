@@ -112,11 +112,11 @@ const BlogManagement = () => {
   const handleDeleteBlog = async (id) => {
     if (window.confirm('Are you sure you want to delete this blog post?')) {
       try {
-        // Note: Backend doesn't have delete endpoint yet, so this is a placeholder
-        // await axios.delete(`${API_URL}/api/blog/${id}`);
+        await axios.delete(`${API_URL}/api/blog/${id}`);
         setBlogs(blogs.filter(blog => blog._id !== id));
       } catch (error) {
         console.error('Error deleting blog:', error);
+        alert('Failed to delete blog post. Please try again.');
       }
     }
   };

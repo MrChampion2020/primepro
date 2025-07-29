@@ -1,3 +1,3 @@
-const API_URL = "https://contact-bpn2.onrender.com";
+const API_URL = "https://primepro.onrender.com";
 
 export default API_URL;

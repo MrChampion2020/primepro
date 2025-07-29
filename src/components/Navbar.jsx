@@ -78,14 +78,13 @@ export default function Navbar() {
           height: NAVBAR_HEIGHT,
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-            <img src={logo} alt="Logo" style={{ width: 40, height: 40, borderRadius: 8, marginRight: 10, boxShadow: '0 2px 8px #0002' }} />
             <motion.div
               whileHover={{ scale: 1.08 }}
               transition={{ type: 'spring', stiffness: 300 }}
-              style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'white', fontWeight: 800, fontSize: 20, letterSpacing: 1 }}
+              style={{ background: 'none', border: 'none', cursor: 'pointer' }}
             >
               <Link to="/" style={{ color: 'inherit', textDecoration: 'none' }}>
-                PrimePro
+                <img src={logo} alt="Logo" style={{ width: 40, height: 40, borderRadius: 8, boxShadow: '0 2px 8px #0002' }} />
               </Link>
             </motion.div>
           </div>
@@ -102,7 +101,7 @@ export default function Navbar() {
                     borderRadius: '8px',
                     fontSize: '15px',
                     fontWeight: '600',
-                    color: location.pathname === item.path ? '#FFA500' : 'white',
+                    color: location.pathname === item.path ? (['Home', 'Products', 'Services', 'Projects', 'Blog', 'Jobs'].includes(item.name) ? '#FFA500' : '#667eea') : 'white',
                     background: location.pathname === item.path ? 'rgba(255,255,255,0.10)' : 'transparent',
                     border: 'none',
                     cursor: 'pointer',
@@ -113,7 +112,7 @@ export default function Navbar() {
                   <Link
                     to={item.path}
                     style={{
-                      color: location.pathname === item.path ? '#FFA500' : 'white',
+                      color: location.pathname === item.path ? (['Home', 'Products', 'Services', 'Projects', 'Blog'].includes(item.name) ? '#FFA500' : '#667eea') : 'white',
                       textDecoration: 'none',
                       display: 'block',
                       width: '100%',
@@ -122,12 +121,16 @@ export default function Navbar() {
                       zIndex: 2,
                     }}
                     onMouseEnter={e => {
-                      e.target.style.background = 'linear-gradient(90deg, #FFA500 0%, #667eea 100%)';
+                      if (['Home', 'Products', 'Services', 'Projects', 'Blog'].includes(item.name)) {
+                        e.target.style.background = 'linear-gradient(90deg, #FFA500 0%, #667eea 100%)';
+                      } else {
+                        e.target.style.background = 'linear-gradient(90deg, #667eea 0%, #4B0082 100%)';
+                      }
                       e.target.style.color = '#fff';
                     }}
                     onMouseLeave={e => {
                       e.target.style.background = location.pathname === item.path ? 'rgba(255,255,255,0.10)' : 'transparent';
-                      e.target.style.color = location.pathname === item.path ? '#FFA500' : 'white';
+                      e.target.style.color = location.pathname === item.path ? (['Home', 'Products', 'Services', 'Projects', 'Blog'].includes(item.name) ? '#FFA500' : '#667eea') : 'white';
                     }}
                   >
                     {item.name}
@@ -141,7 +144,9 @@ export default function Navbar() {
                       bottom: 0,
                       width: '100%',
                       height: 4,
-                      background: 'linear-gradient(90deg, #FFA500 0%, #667eea 100%)',
+                      background: ['Home', 'Products', 'Services', 'Projects', 'Blog'].includes(item.name) 
+                        ? 'linear-gradient(90deg, #FFA500 0%, #667eea 100%)'
+                        : 'linear-gradient(90deg, #667eea 0%, #4B0082 100%)',
                       borderRadius: 2,
                       opacity: location.pathname === item.path ? 1 : 0,
                       transition: 'opacity 0.3s',
@@ -201,7 +206,7 @@ export default function Navbar() {
                   borderRadius: '8px',
                   fontSize: '17px',
                   fontWeight: '600',
-                  color: location.pathname === item.path ? '#FFA500' : 'white',
+                  color: location.pathname === item.path ? (['Home', 'Products', 'Services', 'Projects', 'Blog'].includes(item.name) ? '#FFA500' : '#667eea') : 'white',
                   background: location.pathname === item.path ? 'rgba(255,255,255,0.10)' : 'transparent',
                   border: 'none',
                   cursor: 'pointer',
@@ -213,7 +218,7 @@ export default function Navbar() {
                 <Link
                   to={item.path}
                   style={{
-                    color: location.pathname === item.path ? '#FFA500' : 'white',
+                    color: location.pathname === item.path ? (['Home', 'Products', 'Services', 'Projects', 'Blog'].includes(item.name) ? '#FFA500' : '#667eea') : 'white',
                     textDecoration: 'none',
                     display: 'block',
                     width: '100%',
@@ -221,12 +226,16 @@ export default function Navbar() {
                   }}
                   onClick={() => setIsOpen(false)}
                   onMouseEnter={e => {
-                    e.target.style.background = 'linear-gradient(90deg, #FFA500 0%, #667eea 100%)';
+                    if (['Home', 'Products', 'Services', 'Projects', 'Blog'].includes(item.name)) {
+                      e.target.style.background = 'linear-gradient(90deg, #FFA500 0%, #667eea 100%)';
+                    } else {
+                      e.target.style.background = 'linear-gradient(90deg, #667eea 0%, #4B0082 100%)';
+                    }
                     e.target.style.color = '#fff';
                   }}
                   onMouseLeave={e => {
                     e.target.style.background = location.pathname === item.path ? 'rgba(255,255,255,0.10)' : 'transparent';
-                    e.target.style.color = location.pathname === item.path ? '#FFA500' : 'white';
+                    e.target.style.color = location.pathname === item.path ? (['Home', 'Products', 'Services', 'Projects', 'Blog'].includes(item.name) ? '#FFA500' : '#667eea') : 'white';
                   }}
                 >
                   {item.name}

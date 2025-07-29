@@ -10,6 +10,10 @@ import {
   Contact,
   Blog,
   Jobs,
+  PrivacyPolicy,
+  TermsOfService,
+  Disclaimer,
+  FAQ,
 } from "../screens/index";
 import {
   AdminDashboard,
@@ -45,6 +49,11 @@ const Navigation = () => {
         <Route path="products" element={<Products />} />  {/* Products Route */}
         <Route path="blog" element={<Blog />} />  {/* Blog Route */}
         <Route path="jobs" element={<Jobs />} />  {/* Jobs Route */}
+        {/* Legal and Policy Routes */}
+        <Route path="privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="terms-of-service" element={<TermsOfService />} />
+        <Route path="disclaimer" element={<Disclaimer />} />
+        <Route path="faq" element={<FAQ />} />
         {/* Admin Routes */}
         <Route path="admin/login" element={<AdminLogin />} />
         <Route path="admin/dashboard" element={

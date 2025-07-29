@@ -367,15 +367,7 @@ export default function Contact() {
             }}
           >
             <h2 style={{ fontSize: 24, fontWeight: 700, color: '#4B0082', marginBottom: 10 }}>Contact Information</h2>
-            <motion.div whileHover={{ scale: 1.08, rotate: 2 }} whileTap={{ scale: 0.96 }} style={{ display: 'flex', alignItems: 'center', gap: 14, cursor: 'pointer' }} onClick={() => navigator.clipboard.writeText('NO. 73, EMEBIREN STREET OKUMAGBA LAYOUT, WARRI, DELTA STATE')} title="Copy address">
-              <motion.div whileHover={{ scale: 1.2, color: '#FFA500' }} style={{ display: 'flex', alignItems: 'center' }}>
-                <MapPin size={24} color="#667eea" />
-              </motion.div>
-              <div>
-                <div style={{ fontWeight: 600, color: '#333' }}>NO. 73, EMEBIREN STREET OKUMAGBA LAYOUT, WARRI, DELTA STATE</div>
-                <div style={{ fontSize: 14, color: '#888' }}>Our Address</div>
-              </div>
-            </motion.div>
+            
             <motion.div whileHover={{ scale: 1.08, rotate: -2 }} whileTap={{ scale: 0.96 }} style={{ display: 'flex', alignItems: 'center', gap: 14, cursor: 'pointer' }} onClick={() => navigator.clipboard.writeText('+2348057216362')} title="Copy phone">
               <motion.div whileHover={{ scale: 1.2, color: '#FFA500' }} style={{ display: 'flex', alignItems: 'center' }}>
                 <Phone size={24} color="#FFA500" />

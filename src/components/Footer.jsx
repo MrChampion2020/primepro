@@ -163,6 +163,20 @@ export default function Footer() {
           <p style={{ fontSize: "15px", marginBottom: "8px", opacity: 0.8 }}>
             &copy; {currentYear} Prime Procurement Limited. All rights reserved.
           </p>
+          <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap', justifyContent: 'center' }}>
+            <Link to="/privacy-policy" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', fontSize: '14px' }}>
+              Privacy Policy
+            </Link>
+            <Link to="/terms-of-service" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', fontSize: '14px' }}>
+              Terms of Service
+            </Link>
+            <Link to="/disclaimer" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', fontSize: '14px' }}>
+              Disclaimer
+            </Link>
+            <Link to="/faq" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', fontSize: '14px' }}>
+              FAQ
+            </Link>
+          </div>
         </div>
       </div>
     </footer>

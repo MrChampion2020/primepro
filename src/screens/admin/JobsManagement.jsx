@@ -103,8 +103,7 @@ const JobsManagement = () => {
         applicationDeadline: new Date(formData.applicationDeadline)
       };
 
-      // Note: Backend doesn't have update endpoint yet, so this is a placeholder
-      // await axios.put(`${API_URL}/api/jobs/${selectedJob._id}`, jobData);
+      await axios.put(`${API_URL}/api/jobs/${selectedJob._id}`, jobData);
 
       setShowEditModal(false);
       setSelectedJob(null);
@@ -122,11 +121,11 @@ const JobsManagement = () => {
   const handleDeleteJob = async (id) => {
     if (window.confirm('Are you sure you want to delete this job posting?')) {
       try {
-        // Note: Backend doesn't have delete endpoint yet, so this is a placeholder
-        // await axios.delete(`${API_URL}/api/jobs/${id}`);
+        await axios.delete(`${API_URL}/api/jobs/${id}`);
         setJobs(jobs.filter(job => job._id !== id));
       } catch (error) {
         console.error('Error deleting job:', error);
+        alert('Failed to delete job posting. Please try again.');
       }
     }
   };

@@ -8,11 +8,13 @@ import jobsHero from '../../assets/bg.png'
 import wheel from '../../assets/valve.jpg'
 import background from '../../assets/bg.png'
 import chevron from '../../assets/chevron.png'
+import API_URL from './config'
 
 export default function JobsScreen() {
   const [jobs, setJobs] = useState([])
   const [loading, setLoading] = useState(true)
   const [selectedType, setSelectedType] = useState('all')
+  const [selectedCategory, setSelectedCategory] = useState('all')
   const [searchTerm, setSearchTerm] = useState('')
 
   useEffect(() => {
@@ -21,50 +23,101 @@ export default function JobsScreen() {
 
   const fetchJobs = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/jobs')
+      const response = await axios.get(`${API_URL}/api/jobs`)
       setJobs(response.data)
     } catch (error) {
       console.error('Error fetching jobs:', error)
-      // Fallback data for demo
+      // SEO-optimized fallback data with high-value keywords
       setJobs([
         {
           _id: '1',
-          title: 'Senior Procurement Specialist',
+          title: 'Senior React JS Developer - Remote Jobs',
           company: 'PrimePro Solutions',
-          location: 'Lagos, Nigeria',
+          location: 'Remote / Work from Home',
           type: 'Full-time',
-          description: 'We are seeking an experienced procurement specialist to join our team and help drive our procurement excellence initiatives.',
-          requirements: ['5+ years experience in procurement', 'Strong negotiation skills', 'Knowledge of supply chain management'],
-          benefits: ['Competitive salary', 'Health insurance', 'Professional development'],
+          category: 'tech',
+          description: 'Join our team as a Senior React JS Developer for remote software engineering jobs. Perfect for developers seeking work from home tech jobs with competitive salaries.',
+          requirements: ['5+ years React JS experience', 'Node.js knowledge', 'Full stack development skills', 'Remote work experience'],
+          benefits: ['Competitive remote developer salary', 'Health insurance', 'Professional development', 'Flexible work hours'],
           salary: { min: 80000, max: 120000, currency: 'USD' },
-          applicationDeadline: new Date('2024-02-15'),
-          date: new Date('2024-01-10')
+          applicationDeadline: new Date('2025-02-15'),
+          date: new Date('2025-01-10'),
+          tags: ['React JS jobs remote', 'software engineering jobs', 'work from home tech jobs', 'full stack developer remote jobs']
         },
         {
           _id: '2',
-          title: 'Engineering Project Manager',
+          title: 'Oil & Gas Maintenance Engineer - Offshore Jobs',
           company: 'PrimePro Solutions',
           location: 'Port Harcourt, Nigeria',
           type: 'Full-time',
-          description: 'Lead engineering projects from conception to completion, ensuring quality and timely delivery.',
-          requirements: ['Engineering degree', 'Project management certification', '3+ years experience'],
-          benefits: ['Flexible work hours', 'Performance bonuses', 'Remote work options'],
+          category: 'oil-gas',
+          description: 'Leading oil and gas jobs in Nigeria 2025. Offshore rig jobs with competitive pay. Join top paying oil and gas companies.',
+          requirements: ['Engineering degree', 'Offshore experience', 'Oil & gas certifications', '3+ years experience'],
+          benefits: ['High salary package', 'Offshore bonuses', 'Health insurance', 'Professional development'],
           salary: { min: 90000, max: 140000, currency: 'USD' },
-          applicationDeadline: new Date('2024-02-20'),
-          date: new Date('2024-01-08')
+          applicationDeadline: new Date('2025-02-20'),
+          date: new Date('2025-01-08'),
+          tags: ['oil and gas jobs in Nigeria 2025', 'offshore rig jobs', 'top paying oil and gas companies']
         },
         {
           _id: '3',
-          title: 'Quality Assurance Engineer',
+          title: 'Node JS Developer - Remote Work from Home',
           company: 'PrimePro Solutions',
-          location: 'Abuja, Nigeria',
-          type: 'Contract',
-          description: 'Ensure quality standards are met across all our engineering and procurement processes.',
-          requirements: ['Quality management experience', 'ISO certification knowledge', 'Attention to detail'],
-          benefits: ['Contract renewal opportunities', 'Training programs', 'Competitive rates'],
-          salary: { min: 60000, max: 90000, currency: 'USD' },
-          applicationDeadline: new Date('2024-02-10'),
-          date: new Date('2024-01-05')
+          location: 'Remote / Work from Home',
+          type: 'Full-time',
+          category: 'tech',
+          description: 'Node JS developer jobs with remote work options. Perfect for developers seeking legit work from home jobs 2025.',
+          requirements: ['Node.js expertise', 'JavaScript proficiency', 'API development', 'Remote work capability'],
+          benefits: ['Remote work flexibility', 'Competitive salary', 'Performance bonuses', 'Learning opportunities'],
+          salary: { min: 70000, max: 110000, currency: 'USD' },
+          applicationDeadline: new Date('2025-02-10'),
+          date: new Date('2025-01-05'),
+          tags: ['Node JS developer jobs', 'remote IT jobs hiring now', 'work from home tech jobs']
+        },
+        {
+          _id: '4',
+          title: 'Frontend Developer - React Jobs Remote',
+          company: 'PrimePro Solutions',
+          location: 'Remote / Work from Home',
+          type: 'Full-time',
+          category: 'tech',
+          description: 'Frontend jobs work from home with React expertise. Join our team for remote software engineering jobs.',
+          requirements: ['React JS proficiency', 'Frontend development', 'CSS/HTML expertise', 'Remote collaboration'],
+          benefits: ['Work from home setup', 'Competitive pay', 'Health benefits', 'Career growth'],
+          salary: { min: 65000, max: 100000, currency: 'USD' },
+          applicationDeadline: new Date('2025-02-25'),
+          date: new Date('2025-01-12'),
+          tags: ['frontend jobs work from home', 'React JS jobs remote', 'remote software engineering jobs']
+        },
+        {
+          _id: '5',
+          title: 'Oil & Gas Instrumentation Engineer',
+          company: 'PrimePro Solutions',
+          location: 'Lagos, Nigeria',
+          type: 'Full-time',
+          category: 'oil-gas',
+          description: 'Instrumentation engineer jobs offshore with leading oil companies. High-demand oil and gas jobs in Nigeria 2025.',
+          requirements: ['Instrumentation engineering degree', 'Offshore experience', 'Safety certifications', '5+ years experience'],
+          benefits: ['Offshore bonuses', 'Comprehensive insurance', 'Professional training', 'Career advancement'],
+          salary: { min: 85000, max: 130000, currency: 'USD' },
+          applicationDeadline: new Date('2025-02-28'),
+          date: new Date('2025-01-15'),
+          tags: ['instrumentation engineer jobs offshore', 'oil and gas jobs in Nigeria 2025', 'offshore rig jobs']
+        },
+        {
+          _id: '6',
+          title: 'Full Stack Developer - Remote Jobs',
+          company: 'PrimePro Solutions',
+          location: 'Remote / Work from Home',
+          type: 'Full-time',
+          category: 'tech',
+          description: 'Full stack developer jobs work from home. Perfect for developers seeking remote jobs for developers with modern tech stack.',
+          requirements: ['Full stack development', 'React & Node.js', 'Database management', 'Remote work experience'],
+          benefits: ['Remote work flexibility', 'Competitive salary', 'Health insurance', 'Professional development'],
+          salary: { min: 75000, max: 115000, currency: 'USD' },
+          applicationDeadline: new Date('2025-03-05'),
+          date: new Date('2025-01-18'),
+          tags: ['full stack developer jobs work from home', 'remote jobs for developers', 'work from home tech jobs']
         }
       ])
     } finally {
@@ -72,14 +125,17 @@ export default function JobsScreen() {
     }
   }
 
-  const jobTypes = ['all', 'Full-time', 'Part-time', 'Contract', 'Internship']
+  const jobTypes = ['all', 'Full-time', 'Part-time', 'Contract', 'Internship', 'Remote']
+  const jobCategories = ['all', 'tech', 'oil-gas', 'remote']
 
   const filteredJobs = jobs.filter(job => {
     const matchesType = selectedType === 'all' || job.type === selectedType
+    const matchesCategory = selectedCategory === 'all' || job.category === selectedCategory
     const matchesSearch = job.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          job.company.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         job.location.toLowerCase().includes(searchTerm.toLowerCase())
-    return matchesType && matchesSearch
+                         job.location.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         (job.tags && job.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase())))
+    return matchesType && matchesCategory && matchesSearch
   })
 
   const containerVariants = {
