@@ -16,6 +16,7 @@ export default function ChatWidget() {
   const [input, setInput] = useState('');
   const pollingRef = useRef(null);
   const chatEndRef = useRef(null);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
   // Fetch messages from backend
   const fetchMessages = async () => {
@@ -61,8 +62,24 @@ export default function ChatWidget() {
     }
   }, [messages, open]);
 
+  // Handle responsive design
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
-    <div style={{ position: 'fixed', bottom: 30, right: 30, zIndex: 1000 }}>
+    <div style={{ 
+      position: 'fixed', 
+      bottom: isMobile ? 20 : 30, 
+      right: isMobile ? 20 : 30, 
+      left: isMobile ? 20 : 'auto',
+      zIndex: 1000 
+    }}>
       <AnimatePresence>
         {open && (
           <motion.div
@@ -71,9 +88,9 @@ export default function ChatWidget() {
             exit={{ opacity: 0, y: 50 }}
             transition={{ duration: 0.3 }}
             style={{
-              width: 340,
+              width: isMobile ? '100%' : 340,
               background: 'white',
-              borderRadius: 20,
+              borderRadius: isMobile ? 16 : 20,
               boxShadow: '0 8px 32px #667eea33',
               overflow: 'hidden',
               marginBottom: 16,
@@ -82,8 +99,20 @@ export default function ChatWidget() {
               border: '2px solid #667eea'
             }}
           >
-            <div style={{ background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', color: 'white', padding: 16, fontWeight: 'bold', fontSize: 18 }}>Chat with Us</div>
-            <div style={{ flex: 1, padding: 16, maxHeight: 260, overflowY: 'auto', background: '#f8f9fa' }}>
+            <div style={{ 
+              background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', 
+              color: 'white', 
+              padding: isMobile ? 12 : 16, 
+              fontWeight: 'bold', 
+              fontSize: isMobile ? 16 : 18 
+            }}>Chat with Us</div>
+            <div style={{ 
+              flex: 1, 
+              padding: isMobile ? 12 : 16, 
+              maxHeight: isMobile ? 300 : 260, 
+              overflowY: 'auto', 
+              background: '#f8f9fa' 
+            }}>
               {messages.map((msg, idx) => (
                 <div key={idx} style={{
                   marginBottom: 10,
@@ -94,9 +123,9 @@ export default function ChatWidget() {
                     background: msg.from === 'user' ? '#667eea' : msg.from === 'admin' ? '#FFA500' : '#e0e7ff',
                     color: msg.from === 'user' ? 'white' : msg.from === 'admin' ? 'white' : '#333',
                     borderRadius: 16,
-                    padding: '8px 14px',
-                    fontSize: 15,
-                    maxWidth: 220,
+                    padding: isMobile ? '6px 12px' : '8px 14px',
+                    fontSize: isMobile ? 14 : 15,
+                    maxWidth: isMobile ? '85%' : 220,
                     wordBreak: 'break-word'
                   }}>{msg.text}</span>
                 </div>
@@ -109,9 +138,25 @@ export default function ChatWidget() {
                 value={input}
                 onChange={e => setInput(e.target.value)}
                 placeholder="Type your message..."
-                style={{ flex: 1, border: 'none', padding: 12, fontSize: 15, outline: 'none', borderRadius: 0 }}
+                style={{ 
+                  flex: 1, 
+                  border: 'none', 
+                  padding: isMobile ? 10 : 12, 
+                  fontSize: isMobile ? 14 : 15, 
+                  outline: 'none', 
+                  borderRadius: 0 
+                }}
               />
-              <button type="submit" style={{ background: '#667eea', color: 'white', border: 'none', padding: '0 18px', fontWeight: 'bold', fontSize: 16, cursor: 'pointer', borderRadius: 0 }}>Send</button>
+              <button type="submit" style={{ 
+                background: '#667eea', 
+                color: 'white', 
+                border: 'none', 
+                padding: isMobile ? '0 14px' : '0 18px', 
+                fontWeight: 'bold', 
+                fontSize: isMobile ? 14 : 16, 
+                cursor: 'pointer', 
+                borderRadius: 0 
+              }}>Send</button>
             </form>
           </motion.div>
         )}
@@ -121,8 +166,8 @@ export default function ChatWidget() {
         whileTap={{ scale: 0.95 }}
         onClick={() => setOpen(o => !o)}
         style={{
-          width: 64,
-          height: 64,
+          width: isMobile ? 56 : 64,
+          height: isMobile ? 56 : 64,
           borderRadius: '50%',
           background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
           border: 'none',
@@ -131,11 +176,12 @@ export default function ChatWidget() {
           alignItems: 'center',
           justifyContent: 'center',
           cursor: 'pointer',
-          zIndex: 1001
+          zIndex: 1001,
+          alignSelf: isMobile ? 'flex-end' : 'auto'
         }}
         aria-label="Open chat"
       >
-        <img src={msgIcon} alt="Chat" style={{ width: 32, height: 32 }} />
+        <img src={msgIcon} alt="Chat" style={{ width: isMobile ? 28 : 32, height: isMobile ? 28 : 32 }} />
       </motion.button>
     </div>
   );
