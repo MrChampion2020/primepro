@@ -227,6 +227,65 @@ const JobsManagement = () => {
         </div>
       </motion.div>
 
+      {/* Metrics Overview */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.1 }}
+        className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-6"
+      >
+        <h3 className="text-lg font-semibold text-gray-900 mb-4">Job Performance Metrics</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg p-4 text-white">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm opacity-90">Total Views</p>
+                <p className="text-2xl font-bold">
+                  {jobs.reduce((sum, job) => sum + (job.views?.count || 0), 0)}
+                </p>
+              </div>
+              <Eye className="w-8 h-8 opacity-80" />
+            </div>
+          </div>
+          
+          <div className="bg-gradient-to-r from-green-500 to-green-600 rounded-lg p-4 text-white">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm opacity-90">Total Shares</p>
+                <p className="text-2xl font-bold">
+                  {jobs.reduce((sum, job) => sum + (job.shares?.count || 0), 0)}
+                </p>
+              </div>
+              <Users className="w-8 h-8 opacity-80" />
+            </div>
+          </div>
+          
+          <div className="bg-gradient-to-r from-purple-500 to-purple-600 rounded-lg p-4 text-white">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm opacity-90">Total Applications</p>
+                <p className="text-2xl font-bold">
+                  {jobs.reduce((sum, job) => sum + (job.applications?.count || 0), 0)}
+                </p>
+              </div>
+              <Briefcase className="w-8 h-8 opacity-80" />
+            </div>
+          </div>
+          
+          <div className="bg-gradient-to-r from-orange-500 to-orange-600 rounded-lg p-4 text-white">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm opacity-90">Active Jobs</p>
+                <p className="text-2xl font-bold">
+                  {jobs.filter(job => job.isActive).length}
+                </p>
+              </div>
+              <Clock className="w-8 h-8 opacity-80" />
+            </div>
+          </div>
+        </div>
+      </motion.div>
+
       {/* Jobs Grid */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -315,6 +374,37 @@ const JobsManagement = () => {
                 <p className="text-gray-600 text-sm mb-4 line-clamp-3">
                   {job.description}
                 </p>
+
+                {/* Job Metrics */}
+                <div className="grid grid-cols-3 gap-2 mb-4 p-3 bg-gray-50 rounded-lg">
+                  <div className="text-center">
+                    <div className="text-xs text-gray-500 mb-1">Views</div>
+                    <div className="text-sm font-semibold text-blue-600">
+                      {job.views?.count || 0}
+                    </div>
+                    <div className="text-xs text-gray-400">
+                      {job.views?.uniqueIPs?.length || 0} unique
+                    </div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-xs text-gray-500 mb-1">Shares</div>
+                    <div className="text-sm font-semibold text-green-600">
+                      {job.shares?.count || 0}
+                    </div>
+                    <div className="text-xs text-gray-400">
+                      {job.shares?.uniqueIPs?.length || 0} unique
+                    </div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-xs text-gray-500 mb-1">Applications</div>
+                    <div className="text-sm font-semibold text-purple-600">
+                      {job.applications?.count || 0}
+                    </div>
+                    <div className="text-xs text-gray-400">
+                      {job.applications?.uniqueIPs?.length || 0} unique
+                    </div>
+                  </div>
+                </div>
 
                 <div className="flex items-center justify-between text-sm text-gray-500">
                   <div className="flex items-center space-x-1">

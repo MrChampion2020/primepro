@@ -131,6 +131,46 @@ export default function JobsScreen() {
     }
   }
 
+  // Track job share
+  const trackJobShare = async (jobId) => {
+    try {
+      await axios.post(`${API_URL}/api/jobs/${jobId}/share`)
+    } catch (error) {
+      console.error('Error tracking job share:', error)
+    }
+  }
+
+  // Track job application
+  const trackJobApplication = async (jobId) => {
+    try {
+      await axios.post(`${API_URL}/api/jobs/${jobId}/apply`)
+    } catch (error) {
+      console.error('Error tracking job application:', error)
+    }
+  }
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  // Track job share
+  const trackJobShare = async (jobId) => {
+    try {
+      await axios.post(`${API_URL}/api/jobs/${jobId}/share`)
+    } catch (error) {
+      console.error('Error tracking job share:', error)
+    }
+  }
+
+  // Track job application
+  const trackJobApplication = async (jobId) => {
+    try {
+      await axios.post(`${API_URL}/api/jobs/${jobId}/apply`)
+    } catch (error) {
+      console.error('Error tracking job application:', error)
+    }
+  }
+
   const jobTypes = ['all', 'Full-time', 'Part-time', 'Contract', 'Internship', 'Remote']
   const jobCategories = ['all', 'tech', 'oil-gas', 'remote']
 
@@ -472,6 +512,8 @@ export default function JobsScreen() {
                           whileTap={{ scale: 0.95 }}
                           onClick={() => {
                             const shareUrl = `${window.location.origin}/jobs/${job._id}`;
+                            // Track the share
+                            trackJobShare(job._id);
                             navigator.share ? navigator.share({
                               title: job.title,
                               text: `Check out this job opportunity: ${job.title} at ${job.company}`,
@@ -569,6 +611,7 @@ export default function JobsScreen() {
                           href={job.applyUrl}
                           target="_blank"
                           rel="noopener noreferrer"
+                          onClick={() => trackJobApplication(job._id)}
                           whileHover={{ scale: 1.05 }}
                           whileTap={{ scale: 0.95 }}
                           style={{
@@ -592,14 +635,16 @@ export default function JobsScreen() {
                       <motion.button
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        onClick={() => {
-                          const shareUrl = `${window.location.origin}/jobs/${job._id}`;
-                          navigator.share ? navigator.share({
-                            title: job.title,
-                            text: `Check out this job opportunity: ${job.title} at ${job.company}`,
-                            url: shareUrl
-                          }) : navigator.clipboard.writeText(shareUrl).then(() => alert('Link copied to clipboard!'));
-                        }}
+                                                 onClick={() => {
+                           const shareUrl = `${window.location.origin}/jobs/${job._id}`;
+                           // Track the share
+                           trackJobShare(job._id);
+                           navigator.share ? navigator.share({
+                             title: job.title,
+                             text: `Check out this job opportunity: ${job.title} at ${job.company}`,
+                             url: shareUrl
+                           }) : navigator.clipboard.writeText(shareUrl).then(() => alert('Link copied to clipboard!'));
+                         }}
                         style={{
                           background: 'linear-gradient(90deg, #FFA500 0%, #FF6B35 100%)',
                           color: 'white',

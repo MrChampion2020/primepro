@@ -75,9 +75,16 @@ export default function JobDetail() {
     return `${diffDays} days left`;
   };
 
-  const handleShare = () => {
+  const handleShare = async () => {
     const shareUrl = window.location.href;
     const shareText = `Check out this job opportunity: ${job.title} at ${job.company}`;
+    
+    // Track the share
+    try {
+      await axios.post(`${API_URL}/api/jobs/${id}/share`);
+    } catch (error) {
+      console.error('Error tracking job share:', error);
+    }
     
     if (navigator.share) {
       navigator.share({
@@ -365,6 +372,13 @@ export default function JobDetail() {
                     href={job.applyUrl}
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={async () => {
+                      try {
+                        await axios.post(`${API_URL}/api/jobs/${id}/apply`);
+                      } catch (error) {
+                        console.error('Error tracking job application:', error);
+                      }
+                    }}
                     whileHover={{ scale: 1.02 }}
                     style={{
                       backgroundColor: '#667eea',
