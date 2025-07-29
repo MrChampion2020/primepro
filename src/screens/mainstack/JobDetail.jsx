@@ -14,10 +14,20 @@ export default function JobDetail() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [relatedJobs, setRelatedJobs] = useState([]);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
   useEffect(() => {
     fetchJobDetail();
   }, [id]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const fetchJobDetail = async () => {
     try {
@@ -215,7 +225,7 @@ export default function JobDetail() {
       </motion.section>
 
       <main style={{ flexGrow: 1, marginTop: 0 }}>
-        <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '40px 20px' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto', padding: 'clamp(20px, 5vw, 40px) clamp(10px, 3vw, 20px)' }}>
           
           {/* Job Details */}
           <motion.div
@@ -224,13 +234,13 @@ export default function JobDetail() {
             transition={{ duration: 0.8 }}
             style={{
               display: 'grid',
-              gridTemplateColumns: '2fr 1fr',
-              gap: '40px',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+              gap: 'clamp(20px, 5vw, 40px)',
               marginBottom: '60px'
             }}
           >
             {/* Main Content */}
-            <div>
+            <div style={{ order: 1 }}>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -238,7 +248,7 @@ export default function JobDetail() {
                 style={{
                   background: 'white',
                   borderRadius: '20px',
-                  padding: '40px',
+                  padding: 'clamp(20px, 5vw, 40px)',
                   boxShadow: '0 8px 32px rgba(0,0,0,0.1)',
                   marginBottom: '30px'
                 }}
@@ -292,11 +302,12 @@ export default function JobDetail() {
               style={{
                 background: 'white',
                 borderRadius: '20px',
-                padding: '30px',
+                padding: 'clamp(20px, 4vw, 30px)',
                 boxShadow: '0 8px 32px rgba(0,0,0,0.1)',
                 height: 'fit-content',
-                position: 'sticky',
-                top: '100px'
+                position: isMobile ? 'static' : 'sticky',
+                top: '100px',
+                order: 2
               }}
             >
               <h3 style={{ fontSize: '20px', fontWeight: 'bold', color: '#333', marginBottom: '20px' }}>
