@@ -148,28 +148,6 @@ export default function JobsScreen() {
       console.error('Error tracking job application:', error)
     }
   }
-    } finally {
-      setLoading(false)
-    }
-  }
-
-  // Track job share
-  const trackJobShare = async (jobId) => {
-    try {
-      await axios.post(`${API_URL}/api/jobs/${jobId}/share`)
-    } catch (error) {
-      console.error('Error tracking job share:', error)
-    }
-  }
-
-  // Track job application
-  const trackJobApplication = async (jobId) => {
-    try {
-      await axios.post(`${API_URL}/api/jobs/${jobId}/apply`)
-    } catch (error) {
-      console.error('Error tracking job application:', error)
-    }
-  }
 
   const jobTypes = ['all', 'Full-time', 'Part-time', 'Contract', 'Internship', 'Remote']
   const jobCategories = ['all', 'tech', 'oil-gas', 'remote']
@@ -207,6 +185,7 @@ export default function JobsScreen() {
 
   const formatSalary = (salary) => {
     if (!salary) return 'Competitive'
+    if (!salary.min || !salary.max) return 'Competitive'
     return `${salary.currency} ${salary.min.toLocaleString()} - ${salary.max.toLocaleString()}`
   }
 
